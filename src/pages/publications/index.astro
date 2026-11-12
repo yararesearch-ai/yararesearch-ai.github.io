@@ -1,0 +1,425 @@
+---
+// src/pages/publications/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { PUBLICATIONS } from '../../data/research';
+---
+
+<BaseLayout
+  title="Publications | YARA Research"
+  description="Research papers, technical reports, working papers and research notes from YARA Research."
+>
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <span class="research-id">Publications</span>
+        <h1 class="page-title">Ideas become knowledge when they can be examined.</h1>
+        <p class="page-subtitle">
+          Research papers, technical reports, working papers and research notes
+          from YARA Research projects. All publications undergo an independent
+          review process before release.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty state -->
+  <section class="page-section" aria-label="Publications list">
+    <div class="container">
+      <!-- Filter bar placeholder -->
+      <div class="filter-bar">
+        <span class="filter-label">Filter by:</span>
+        <div class="filter-tags">
+          <span class="filter-tag filter-tag--active">All</span>
+          <span class="filter-tag">Research Papers</span>
+          <span class="filter-tag">Technical Reports</span>
+          <span class="filter-tag">Working Papers</span>
+          <span class="filter-tag">Research Notes</span>
+        </div>
+      </div>
+
+      <!-- Active Publications -->
+      <div class="active-pubs-list">
+        <h2 class="active-pubs-title">Current Working Papers &amp; Agendas</h2>
+        <div class="pubs-grid">
+          {PUBLICATIONS.map((pub) => (
+            <article class="pub-card">
+              <div class="pub-card-meta">
+                <span class="pub-id">{pub.id}</span>
+                <span class="status-badge status-active">{pub.type}</span>
+                <span class="pub-date">{pub.date}</span>
+              </div>
+              <h3 class="pub-card-title">
+                <a href={`/publications/${pub.slug}`}>
+                  {pub.title}
+                </a>
+              </h3>
+              <p class="pub-card-sub">{pub.subtitle}</p>
+              <p class="pub-card-abstract">{pub.abstract}</p>
+              <div class="pub-card-footer">
+                <a href={`/publications/${pub.slug}`} class="pub-read-link">
+                  Read Working Paper &amp; Cite (BibTeX) →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <!-- Empty state for peer-reviewed journal papers -->
+      <div class="pub-empty-state">
+        <div class="pub-empty-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <div class="pub-empty-text">
+          <h2>Research in progress.</h2>
+          <p>
+            Publications will appear here as YARA Research projects progress through
+            experimentation, independent review and publication approval.
+          </p>
+          <p>
+            YARA Research follows a rigorous publication lifecycle. We will not publish
+            preliminary claims or unvalidated findings. Quality and reproducibility
+            take precedence over publication velocity.
+          </p>
+          <a href="/research" class="btn-link">Explore active research projects →</a>
+        </div>
+      </div>
+
+      <!-- Publication types info -->
+      <div class="pub-types-section">
+        <h2 class="pub-types-title">Publication types</h2>
+        <div class="pub-types-grid">
+          {[
+            {
+              type: 'Research Papers',
+              desc: 'Completed research with validated experimental findings, submitted to or published in peer-reviewed venues.',
+              status: 'No publications yet',
+            },
+            {
+              type: 'Technical Reports',
+              desc: 'Detailed accounts of experimental work, methodologies and findings. Not peer-reviewed but subject to internal review.',
+              status: 'No publications yet',
+            },
+            {
+              type: 'Working Papers',
+              desc: 'Preliminary research findings shared for community feedback before formal review. Clearly marked as preliminary.',
+              status: 'No publications yet',
+            },
+            {
+              type: 'Research Notes',
+              desc: 'Brief experimental observations, negative findings and research updates that do not constitute complete papers.',
+              status: 'No publications yet',
+            },
+          ].map(({ type, desc, status }) => (
+            <div class="pub-type-card">
+              <h3 class="pub-type-name">{type}</h3>
+              <p class="pub-type-desc">{desc}</p>
+              <span class="pub-type-status">{status}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--nav-height) + 4rem);
+    padding-bottom: 4rem;
+    background: var(--color-graphite);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 54ch;
+  }
+
+  .page-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .page-section {
+    padding-block: 4rem;
+    background: var(--color-graphite);
+  }
+
+  /* Filter bar */
+  .filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .filter-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-tag {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.3rem 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+
+  .filter-tag--active {
+    color: var(--color-electric-blue);
+    border-color: rgba(91,156,255,0.3);
+    background: rgba(91,156,255,0.06);
+  }
+
+  /* Active publications */
+  .active-pubs-list {
+    margin-bottom: 3.5rem;
+  }
+
+  .active-pubs-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1.25rem;
+  }
+
+  .pubs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .pub-card {
+    padding: 2rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .pub-card:hover {
+    border-color: rgba(91, 156, 255, 0.35);
+    background: var(--color-elevated);
+  }
+
+  .pub-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .pub-id {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-electric-blue);
+  }
+
+  .pub-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .pub-card-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.015em;
+  }
+
+  .pub-card-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .pub-card-title a:hover {
+    color: var(--color-electric-blue);
+  }
+
+  .pub-card-sub {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  .pub-card-abstract {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .pub-card-footer {
+    margin-top: 0.5rem;
+  }
+
+  .pub-read-link {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-electric-blue);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .pub-read-link:hover {
+    opacity: 0.85;
+  }
+
+  /* Empty state */
+  .pub-empty-state {
+    display: flex;
+    gap: 2rem;
+    padding: 3rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background: rgba(255,255,255,0.015);
+    margin-bottom: 4rem;
+    align-items: flex-start;
+  }
+
+  .pub-empty-icon {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    color: var(--color-text-muted);
+    background: rgba(255,255,255,0.025);
+    flex-shrink: 0;
+  }
+
+  .pub-empty-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 54ch;
+  }
+
+  .pub-empty-text h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .pub-empty-text p {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .btn-link {
+    display: inline-flex;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-electric-blue);
+    text-decoration: none;
+    transition: opacity 0.2s;
+    margin-top: 0.25rem;
+  }
+
+  .btn-link:hover { opacity: 0.8; }
+
+  /* Types section */
+  .pub-types-section { }
+
+  .pub-types-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .pub-types-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--color-border);
+  }
+
+  .pub-type-card {
+    padding: 1.5rem;
+    background: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .pub-type-name {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .pub-type-desc {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    flex: 1;
+  }
+
+  .pub-type-status {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 640px) {
+    .pub-empty-state {
+      flex-direction: column;
+      padding: 2rem;
+    }
+    .pub-types-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

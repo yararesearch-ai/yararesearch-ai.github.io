@@ -1,0 +1,178 @@
+# YARA Research — Extended Research Knowledge Base (llms-full.txt)
+
+> Comprehensive, authoritative, machine-readable knowledge base for YARA Research. Designed for Large Language Models, AI research agents, and academic search systems.
+> Canonical Source: https://yararesearch.com/llms-full.txt
+
+---
+
+## 1. Full Founding Charter (Version 1.0 · November 2026)
+
+### Article I — Establishment
+YARA Research is established as an independent, founder-led research initiative dedicated to advancing artificial intelligence through scientific investigation, experimental engineering and open collaboration.
+
+### Article II — Mission
+To explore the foundations, architectures and engineering principles of intelligent systems and contribute meaningful, reproducible knowledge to the global AI ecosystem.
+
+### Article III — Research Scope
+YARA Research shall investigate foundational and applied areas of AI, including:
+- Machine learning and neural architectures.
+- Large and small language models.
+- Reasoning and intelligence systems.
+- Agentic and agentless architectures.
+- AI engineering and software development.
+- Local inference and model optimisation.
+- Memory, context and knowledge systems.
+- AI safety, evaluation and governance.
+- Emerging AI protocols and infrastructure.
+
+### Article IV — Research Methodology
+Research projects should establish a problem statement, literature review, research question, hypothesis where applicable, methodology, experimental design, evaluation criteria and documented findings. Negative findings and limitations must be reported alongside positive results.
+
+### Article V — Independence
+YARA Research shall maintain independence from employers, commercial vendors and technology providers. External funding or partnerships must not compromise the integrity or publication of research findings. The research organisation shall not serve as a marketing function for commercial products.
+
+### Article VI — Open Research
+Research outputs should be made publicly accessible whenever possible, subject to intellectual property, licensing, privacy, security and responsible disclosure obligations. YARA Research prefers open publications, open-source implementations and open datasets.
+
+### Article VII — Collaboration
+Researchers, engineers, students and independent contributors may participate through transparent, project-specific collaboration arrangements with clear terms covering IP ownership, attribution, licensing and contribution expectations.
+
+### Article VIII — Research Integrity
+All contributors must accurately represent their contributions, disclose relevant conflicts, respect attribution requirements and avoid fabrication, plagiarism or misleading experimental claims. AI tools must not be represented as human authors. AI-assisted research should be disclosed appropriately.
+
+### Article IX — Governance
+The founding director establishes the initial research agenda, selects research projects and maintains responsibility for publication quality. Research leads and independent reviewers may be appointed as the organisation grows. Governance structures should evolve with the organisation's actual capabilities.
+
+### Article X — Evolution
+YARA Research may evolve into a formally constituted research organisation, institute or other suitable legal structure when its activities, funding and governance justify such a transition. This charter should be reviewed and updated as the organisation matures.
+
+---
+
+## 2. Research Programme Taxonomies
+
+### Programme P01: Intelligence & Reasoning
+- **Slug:** `intelligence-reasoning`
+- **Focus:** Nature, architectures, and mechanisms of machine intelligence.
+- **Sub-areas:**
+  - LLM multi-step reasoning and inference-time scaling laws
+  - Small language models (SLM) task specialization
+  - Multimodal perception and cross-modal reasoning
+  - Model adaptation, parameter-efficient fine-tuning (PEFT), and LoRA mechanics
+  - Synthetic data synthesis, distillation, and representation
+- **Primary Research Questions:**
+  - How do language models perform multi-step reasoning under inference compute budgets?
+  - What scaling laws govern chain-of-thought and verification loops at test time?
+  - Can smaller models reason more reliably through domain specialisation than larger models through generalisation?
+- **Canonical URL:** https://yararesearch.com/research/programmes/intelligence-reasoning
+
+### Programme P02: Agentic & Agentless Systems
+- **Slug:** `agentic-agentless-systems`
+- **Focus:** Autonomous versus deterministic architectures for task execution.
+- **Sub-areas:**
+  - Deterministic state machines vs autonomous agent loops
+  - Agentless intelligence patterns (structured decomposition, single-pass synthesis)
+  - Multi-agent coordination protocols and failure recovery
+  - Tool invocation, parameter validation, and sandbox isolation
+  - Compounding error analysis in iterative agent loops
+- **Primary Research Questions:**
+  - Which classes of tasks fundamentally benefit from autonomous agents versus deterministic pipelines?
+  - What are the quantitative trade-offs in latency, token consumption, and failure rates between agentic and agentless systems?
+  - Can hybrid architectures combine deterministic reliability with dynamic agent fallback?
+- **Canonical URL:** https://yararesearch.com/research/programmes/agentic-agentless-systems
+
+### Programme P03: AI Engineering & Software Systems
+- **Slug:** `ai-engineering-software-systems`
+- **Focus:** Transforming software engineering lifecycles with AI-native systems.
+- **Sub-areas:**
+  - Coding agent architectures and repository comprehension
+  - AI-native software development lifecycles (SDLC)
+  - Formal specification-driven development and verification
+  - Automated unit, integration, and fuzz testing with LLMs
+  - AI-assisted architectural analysis and dependency isolation
+- **Primary Research Questions:**
+  - How can AI systems reliably generate, review, and test production software?
+  - What does an AI-native SDLC require beyond simple copilot code autocompletion?
+  - How can formal verification bound AI coding agents against subtle vulnerabilities?
+- **Canonical URL:** https://yararesearch.com/research/programmes/ai-engineering-software-systems
+
+### Programme P04: Local AI & Efficient Intelligence
+- **Slug:** `local-ai-efficient-intelligence`
+- **Focus:** Efficient, accessible, privacy-preserving AI decoupled from cloud APIs.
+- **Sub-areas:**
+  - Local inference runtimes (llama.cpp, MLX, TensorRT-LLM)
+  - Post-training quantization (AWQ, GPTQ, GGUF, EXL2)
+  - Small language models (0.5B to 8B parameter regimes)
+  - Dynamic local/cloud routing based on complexity estimation
+  - Edge compute, memory-bandwidth optimization, and power efficiency
+- **Primary Research Questions:**
+  - What reasoning performance is achievable on consumer hardware using 4-bit and 3-bit quantisation?
+  - How can context caching and retrieval compensate for reduced model parameters?
+  - What local routing algorithms minimize cloud egress while maintaining task accuracy?
+- **Canonical URL:** https://yararesearch.com/research/programmes/local-ai-efficient-intelligence
+
+### Programme P05: Knowledge, Context & Memory
+- **Slug:** `knowledge-context-memory`
+- **Focus:** Acquisition, compression, persistence, and retrieval of structured context.
+- **Sub-areas:**
+  - Context engineering and selective prompt compression
+  - Long-term persistent memory architectures for LLM systems
+  - Knowledge graphs, Graph-RAG, and relational factual grounding
+  - Retrieval-Augmented Generation (RAG) optimization
+  - Context degradation, distraction mitigation, and attention drift
+- **Primary Research Questions:**
+  - How should intelligent systems maintain state across sessions without infinite token history?
+  - Can knowledge graphs prevent hallucination more effectively than dense vector retrieval alone?
+  - What architectures support continuous memory updates without catastrophic interference?
+- **Canonical URL:** https://yararesearch.com/research/programmes/knowledge-context-memory
+
+### Programme P06: AI Safety, Evaluation & Governance
+- **Slug:** `ai-safety-evaluation-governance`
+- **Focus:** Reliability, evaluation rigor, tool execution security, and responsible oversight.
+- **Sub-areas:**
+  - Standardized empirical benchmarks and reproducibility criteria
+  - Tool execution boundaries and code sandbox security
+  - Guardrail systems, prompt injection defense, and policy enforcement
+  - Mechanistic interpretability and agent observability
+  - Ethical AI research, dual-use mitigation, and disclosure frameworks
+- **Primary Research Questions:**
+  - How can autonomous systems be benchmarked in environments with stochastic variance?
+  - What security architectures prevent tool-calling agents from executing destructive system commands?
+  - How can observability runtimes inspect internal agent decisions before action execution?
+- **Canonical URL:** https://yararesearch.com/research/programmes/ai-safety-evaluation-governance
+
+---
+
+## 3. Publication Metadata & BibTeX
+
+### Working Paper YR-WP-2026-001
+- **Title:** Beyond Agentic AI: Exploring Deterministic, Agent-Based, and Hybrid Intelligence Architectures
+- **Subtitle:** A Comparative Research Agenda on Reliability, Latency, and Cost Trade-offs
+- **Authors:** Aditya Padwal (Lead Investigator)
+- **Institution:** YARA Research
+- **Date:** November 2026
+- **Status:** Active Working Paper / Research Agenda
+- **Programme:** P02 (Agentic & Agentless Systems)
+- **URL:** https://yararesearch.com/publications/beyond-agentic-ai-architectures
+- **Keywords:** Agentic AI, Agentless Systems, Deterministic Workflows, Benchmarking, LLM Systems Architecture
+- **BibTeX:**
+```bibtex
+@techreport{padwal2026beyondagentic,
+  title={Beyond Agentic AI: Exploring Deterministic, Agent-Based, and Hybrid Intelligence Architectures},
+  author={Padwal, Aditya},
+  institution={YARA Research},
+  year={2026},
+  number={YR-WP-2026-001},
+  url={https://yararesearch.com/publications/beyond-agentic-ai-architectures}
+}
+```
+
+---
+
+## 4. Entity Provenance & Verification
+
+- **Website:** https://yararesearch.com/
+- **Sitemap:** https://yararesearch.com/sitemap.xml
+- **GitHub:** https://github.com/yararesearch-ai
+- **Contact Email:** founder@yararesearch.com
+- **Contact Protocol:** Direct email or collaboration discussions via official GitHub repositories.
+- **Copyright:** © 2026 YARA Research. All rights reserved.

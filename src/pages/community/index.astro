@@ -1,0 +1,395 @@
+---
+// src/pages/community/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Community | YARA Research"
+  description="Join the YARA Research community as a Research Observer, Contributor, Fellow or External Reviewer."
+>
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <span class="research-id">Community</span>
+        <h1 class="page-title">Intelligence advances through collaboration.</h1>
+        <p class="page-subtitle">
+          YARA Research is designed as a distributed, globally connected research
+          community. Researchers, engineers, students and independent contributors
+          are welcome, irrespective of geography or institutional affiliation.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="page-section" aria-label="Community information">
+    <div class="container">
+      <!-- Current status disclosure -->
+      <div class="status-disclosure">
+        <div class="status-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <div class="status-text">
+          <strong>Current status:</strong> YARA Research was established in November 2026.
+          Formal collaboration programmes are in planning. Follow our
+          <a href="https://github.com/yararesearch-ai" target="_blank" rel="noopener noreferrer">GitHub organisation</a>
+          for updates on when participation opens.
+        </div>
+      </div>
+
+      <!-- How to participate -->
+      <div class="contrib-section">
+        <h2 class="section-title">Planned contribution paths</h2>
+        <p class="section-subtitle">
+          These roles are in development. Clear agreements covering IP ownership,
+          attribution, licensing and contribution expectations will be published
+          before any formal participation opens.
+        </p>
+
+        <div class="contrib-grid">
+          {[
+            {
+              id: 'RO',
+              title: 'Research Observer',
+              commitment: 'Flexible',
+              desc: 'Follow active research projects, review literature and provide feedback on published findings. Suitable for students and AI enthusiasts.',
+              status: 'Planned',
+            },
+            {
+              id: 'RC',
+              title: 'Research Contributor',
+              commitment: '3–5 hrs/week',
+              desc: 'Conduct experiments, implement prototypes, review code and contribute to open-source research tools. For engineers and researchers.',
+              status: 'Planned',
+            },
+            {
+              id: 'RF',
+              title: 'Research Fellow',
+              commitment: 'Project-based',
+              desc: 'Take ownership of a research workstream. Requires sustained commitment and results in co-authorship of published outputs.',
+              status: 'Future',
+            },
+            {
+              id: 'PL',
+              title: 'Programme Lead',
+              commitment: 'Programme-based',
+              desc: 'Lead research direction within one of the six programmes. Requires deep domain expertise and long-term commitment.',
+              status: 'Future',
+            },
+            {
+              id: 'ER',
+              title: 'External Reviewer',
+              commitment: 'Per review',
+              desc: 'Provide independent technical and methodological review of research before publication.',
+              status: 'Planned',
+            },
+          ].map(({ id, title, commitment, desc, status }) => (
+            <div class="contrib-card">
+              <div class="contrib-header">
+                <span class="contrib-id">{id}</span>
+                <span class="contrib-status">{status}</span>
+              </div>
+              <h3 class="contrib-title">{title}</h3>
+              <div class="contrib-commitment">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+                {commitment}
+              </div>
+              <p class="contrib-desc">{desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Principles -->
+      <div class="principles-section">
+        <h2 class="section-title">Global collaboration principles</h2>
+        <div class="principles-list">
+          {[
+            'Remote-first participation. No geographic restrictions.',
+            'English as the common research language.',
+            'Asynchronous collaboration. No mandatory synchronous meetings.',
+            'Public project documentation. Transparent research processes.',
+            'Clear IP, attribution and licensing from day one.',
+            'No unpaid work disguised as promised compensation.',
+            'No mandatory institutional affiliation required.',
+          ].map((principle, i) => (
+            <div class="principle-row">
+              <span class="principle-num">{String(i + 1).padStart(2, '0')}</span>
+              <span class="principle-text">{principle}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- GitHub CTA -->
+      <div class="github-cta">
+        <h2>Follow our research</h2>
+        <p>
+          Star and watch the YARA Research GitHub organisation to follow active research
+          projects, open-source releases and announcements.
+        </p>
+        <a
+          href="https://github.com/yararesearch-ai"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="github-btn"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          github.com/yararesearch-ai
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--nav-height) + 4rem);
+    padding-bottom: 4rem;
+    background: var(--color-graphite);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 54ch;
+  }
+
+  .page-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .page-section {
+    padding-block: 4rem;
+    background: var(--color-graphite);
+  }
+
+  /* Status disclosure */
+  .status-disclosure {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: rgba(91, 156, 255, 0.05);
+    border: 1px solid rgba(91, 156, 255, 0.2);
+    border-radius: 3px;
+    margin-bottom: 3rem;
+    max-width: 72ch;
+  }
+
+  .status-icon {
+    color: var(--color-electric-blue);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .status-text {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .status-text a {
+    color: var(--color-electric-blue);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .status-text a:hover { opacity: 0.8; }
+
+  .status-text strong { color: var(--color-text-primary); }
+
+  /* Sections */
+  .contrib-section,
+  .principles-section,
+  .github-cta {
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    max-width: 60ch;
+    margin-bottom: 2rem;
+  }
+
+  /* Contrib grid */
+  .contrib-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--color-border);
+  }
+
+  .contrib-card {
+    padding: 1.5rem;
+    background: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: background 0.2s;
+  }
+
+  .contrib-card:hover { background: var(--color-elevated); }
+
+  .contrib-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .contrib-id {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-electric-blue);
+  }
+
+  .contrib-status {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.2rem 0.4rem;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+  }
+
+  .contrib-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.015em;
+  }
+
+  .contrib-commitment {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+  }
+
+  .contrib-desc {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  /* Principles list */
+  .principles-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 64ch;
+  }
+
+  .principle-row {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    padding: 1rem 1.25rem;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .principle-row:last-child { border-bottom: none; }
+
+  .principle-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--color-electric-blue);
+    flex-shrink: 0;
+  }
+
+  .principle-text {
+    font-size: 0.9375rem;
+    color: var(--color-text-secondary);
+  }
+
+  /* GitHub CTA */
+  .github-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background: var(--color-midnight-navy);
+    max-width: 48rem;
+  }
+
+  .github-cta h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.015em;
+  }
+
+  .github-cta p {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    max-width: 54ch;
+  }
+
+  .github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    padding: 0.75rem 1.25rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 3px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+    width: fit-content;
+  }
+
+  .github-btn:hover {
+    border-color: rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.04);
+  }
+
+  @media (max-width: 768px) {
+    .contrib-grid { grid-template-columns: 1fr; }
+  }
+</style>

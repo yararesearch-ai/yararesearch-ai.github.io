@@ -1,0 +1,537 @@
+---
+// src/pages/publications/[slug].astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { PUBLICATIONS, RESEARCH_PROGRAMMES } from '../../data/research';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return PUBLICATIONS.map((pub) => ({
+    params: { slug: pub.slug },
+    props: { publication: pub },
+  }));
+};
+
+const { publication } = Astro.props;
+const programme = RESEARCH_PROGRAMMES.find((p) => p.id === publication.programme);
+---
+
+<BaseLayout
+  title={`${publication.id}: ${publication.title} | YARA Research`}
+  description={publication.abstract}
+  article={true}
+>
+  <div class="pub-article-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/publications">Publications</a>
+        <span>→</span>
+        <span class="breadcrumb-current">{publication.id}</span>
+      </div>
+
+      <div class="pub-hero-inner">
+        <div class="pub-meta-top">
+          <span class="pub-id">{publication.id}</span>
+          <span class="status-badge status-active">{publication.type}</span>
+          {programme && (
+            <a href={`/research/programmes/${programme.slug}`} class="programme-tag">
+              {programme.id} · {programme.shortTitle}
+            </a>
+          )}
+          <span class="pub-date">{publication.date}</span>
+        </div>
+
+        <h1 class="pub-title">{publication.title}</h1>
+        <p class="pub-subtitle">{publication.subtitle}</p>
+
+        <!-- Authors -->
+        <div class="authors-block">
+          <span class="authors-label">Investigators:</span>
+          <div class="authors-list">
+            {publication.authors.map((author) => (
+              <div class="author-item">
+                <span class="author-name">{author.name}</span>
+                <span class="author-role">{author.role}</span>
+                <span class="author-affil">({author.affiliation})</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pub-article-body">
+    <div class="container">
+      <div class="pub-layout">
+        <!-- Main content -->
+        <article class="pub-main">
+          <!-- Abstract -->
+          <section class="abstract-section" aria-labelledby="abstract-heading">
+            <h2 id="abstract-heading" class="section-title">Abstract</h2>
+            <div class="abstract-box">
+              <p>{publication.abstract}</p>
+            </div>
+          </section>
+
+          <!-- Keywords -->
+          <section class="keywords-section" aria-label="Keywords">
+            <span class="keywords-label">Keywords:</span>
+            <div class="keywords-list">
+              {publication.keywords.map((kw) => (
+                <span class="keyword-tag">{kw}</span>
+              ))}
+            </div>
+          </section>
+
+          <!-- Status & Availability Notice -->
+          <section class="notice-section">
+            <div class="research-notice">
+              <div class="notice-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="12" y1="16" x2="12" y2="12"/>
+                  <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+              </div>
+              <div class="notice-content">
+                <h3 class="notice-title">Publication Integrity &amp; Transparency Notice</h3>
+                <p>
+                  This publication is currently an active Working Paper / Research Proposal.
+                  Full technical reports and empirical evaluation datasets will be attached
+                  as benchmarks are executed under the YR-001 research project. We do not
+                  claim peer-reviewed conference acceptance until formal review is concluded.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- BibTeX Citation -->
+          <section class="citation-section" aria-labelledby="citation-heading">
+            <div class="citation-header">
+              <h2 id="citation-heading" class="section-title">Cite this Publication</h2>
+              <span class="citation-type">BibTeX Format</span>
+            </div>
+            <div class="bibtex-box">
+              <pre><code>{publication.citationBibtex}</code></pre>
+            </div>
+          </section>
+        </article>
+
+        <!-- Sidebar -->
+        <aside class="pub-sidebar" aria-label="Publication Links &amp; Identifiers">
+          <div class="sidebar-block">
+            <h3 class="sidebar-title">Identifiers &amp; Links</h3>
+            <div class="links-list">
+              <div class="link-item link-item--inactive">
+                <span class="link-label">DOI</span>
+                <span class="link-status">Pending Review</span>
+              </div>
+              <div class="link-item link-item--inactive">
+                <span class="link-label">arXiv</span>
+                <span class="link-status">Pending Submission</span>
+              </div>
+              <div class="link-item link-item--inactive">
+                <span class="link-label">Zenodo</span>
+                <span class="link-status">Pending Archive</span>
+              </div>
+              <a href={publication.github} target="_blank" rel="noopener noreferrer" class="link-item link-item--active">
+                <span class="link-label">Code / GitHub</span>
+                <span class="link-arrow">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="sidebar-block">
+            <h3 class="sidebar-title">Research Programme</h3>
+            {programme && (
+              <a href={`/research/programmes/${programme.slug}`} class="programme-link">
+                <strong>{programme.id}</strong> · {programme.title}
+              </a>
+            )}
+          </div>
+
+          <div class="sidebar-block">
+            <h3 class="sidebar-title">Open Access Commitment</h3>
+            <p class="sidebar-text">
+              All YARA Research technical reports, working papers, and preprints are released
+              without subscription paywalls under open academic and open-source licenses.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .pub-article-hero {
+    padding-top: calc(var(--nav-height) + 3rem);
+    padding-bottom: 3.5rem;
+    background: var(--color-graphite);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-text-secondary);
+  }
+
+  .breadcrumb-current {
+    color: var(--color-text-secondary);
+  }
+
+  .pub-hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 60ch;
+  }
+
+  .pub-meta-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .pub-id {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-electric-blue);
+    letter-spacing: 0.08em;
+  }
+
+  .programme-tag {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .programme-tag:hover {
+    color: var(--color-electric-blue);
+    border-color: rgba(91, 156, 255, 0.3);
+  }
+
+  .pub-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .pub-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--color-text-primary);
+    line-height: 1.15;
+  }
+
+  .pub-subtitle {
+    font-size: 1.0625rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .authors-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .authors-label {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+  }
+
+  .authors-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .author-item {
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .author-name {
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .author-role {
+    color: var(--color-electric-blue);
+  }
+
+  .author-affil {
+    color: var(--color-text-muted);
+  }
+
+  /* Body */
+  .pub-article-body {
+    padding-block: 4rem 6rem;
+    background: var(--color-graphite);
+  }
+
+  .pub-layout {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .pub-main {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+  }
+
+  .abstract-box {
+    padding: 1.75rem;
+    background: var(--color-surface);
+    border-left: 3px solid var(--color-electric-blue);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .abstract-box p {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+  }
+
+  .keywords-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .keywords-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .keywords-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .keyword-tag {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-secondary);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    border: 1px solid var(--color-border);
+  }
+
+  .research-notice {
+    display: flex;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(86, 217, 232, 0.03);
+    border: 1px solid rgba(86, 217, 232, 0.2);
+    border-radius: 4px;
+  }
+
+  .notice-icon {
+    color: var(--color-intelligence-cyan);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .notice-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.35rem;
+  }
+
+  .notice-content p {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  /* Citation */
+  .citation-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .citation-type {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bibtex-box {
+    background: var(--color-midnight-navy);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    padding: 1.25rem;
+    overflow-x: auto;
+  }
+
+  .bibtex-box pre {
+    margin: 0;
+  }
+
+  .bibtex-box code {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.6;
+  }
+
+  /* Sidebar */
+  .pub-sidebar {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    position: sticky;
+    top: calc(var(--nav-height) + 2rem);
+  }
+
+  .sidebar-block {
+    padding: 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .sidebar-block:last-child {
+    border-bottom: none;
+  }
+
+  .sidebar-title {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .link-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 0.75rem;
+    border-radius: 3px;
+    font-size: 0.8125rem;
+  }
+
+  .link-item--inactive {
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--color-text-muted);
+    border: 1px dashed var(--color-border);
+  }
+
+  .link-status {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+  }
+
+  .link-item--active {
+    background: rgba(91, 156, 255, 0.06);
+    color: var(--color-electric-blue);
+    border: 1px solid rgba(91, 156, 255, 0.25);
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .link-item--active:hover {
+    background: rgba(91, 156, 255, 0.12);
+    border-color: rgba(91, 156, 255, 0.4);
+  }
+
+  .programme-link {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .programme-link:hover {
+    color: var(--color-electric-blue);
+  }
+
+  .sidebar-text {
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 1024px) {
+    .pub-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .pub-sidebar {
+      position: static;
+    }
+  }
+</style>

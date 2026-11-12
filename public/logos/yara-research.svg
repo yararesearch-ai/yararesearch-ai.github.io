@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" width="240" height="48" fill="none">
+  <!-- Brand icon box -->
+  <rect x="2" y="6" width="36" height="36" rx="6" fill="#101522" stroke="rgba(91, 156, 255, 0.2)" stroke-width="1.5"/>
+  <rect x="2" y="6" width="36" height="36" rx="6" fill="rgba(91, 156, 255, 0.08)"/>
+  
+  <!-- Y symbol -->
+  <path d="M12 15L20 25M28 15L20 25M20 25V33" stroke="#5B9CFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Accent cyan node -->
+  <circle cx="29" cy="14" r="2.5" fill="#56D9E8"/>
+  
+  <!-- Logotype -->
+  <text x="48" y="26" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="17" font-weight="700" fill="#F4F6FA" letter-spacing="-0.02em">YARA Research</text>
+  <text x="49" y="38" font-family="'IBM Plex Mono', monospace" font-size="7.5" font-weight="500" fill="#687386" letter-spacing="0.1em">INTELLIGENCE FRONTIER</text>
+</svg>

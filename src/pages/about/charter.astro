@@ -1,0 +1,268 @@
+---
+// src/pages/about/charter.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Founding Charter | YARA Research"
+  description="The founding charter of YARA Research, establishing its mission, research scope, methodology, independence principles and governance."
+>
+  <div class="charter-hero">
+    <div class="container">
+      <div class="charter-breadcrumb">
+        <a href="/about">About</a>
+        <span>→</span>
+        <span>Founding Charter</span>
+      </div>
+      <div class="charter-title-block">
+        <span class="research-id">Founding Charter · Version 1.0 · November 2026</span>
+        <h1 class="charter-title">YARA Research Founding Charter</h1>
+        <p class="charter-preamble">
+          This charter establishes the founding purpose, mission, research scope,
+          operating principles and governance of YARA Research. It is a founding
+          policy document, not a legal constitution.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="charter-body">
+    <div class="container">
+      <article class="charter-document" aria-label="Founding Charter">
+        {[
+          {
+            article: 'I',
+            title: 'Establishment',
+            content: 'YARA Research is established as an independent, founder-led research initiative dedicated to advancing artificial intelligence through scientific investigation, experimental engineering and open collaboration.',
+          },
+          {
+            article: 'II',
+            title: 'Mission',
+            content: 'To explore the foundations, architectures and engineering principles of intelligent systems and contribute meaningful, reproducible knowledge to the global AI ecosystem.',
+          },
+          {
+            article: 'III',
+            title: 'Research Scope',
+            content: 'YARA Research shall investigate foundational and applied areas of AI, including: machine learning and neural architectures; large and small language models; reasoning and intelligence systems; agentic and agentless architectures; AI engineering and software development; local inference and model optimisation; memory, context and knowledge systems; AI safety, evaluation and governance; and emerging AI protocols and infrastructure.',
+          },
+          {
+            article: 'IV',
+            title: 'Research Methodology',
+            content: 'Research projects should establish a problem statement, literature review, research question, hypothesis where applicable, methodology, experimental design, evaluation criteria and documented findings. Negative findings and limitations must be reported alongside positive results.',
+          },
+          {
+            article: 'V',
+            title: 'Independence',
+            content: 'YARA Research shall maintain independence from employers, commercial vendors and technology providers. External funding or partnerships must not compromise the integrity or publication of research findings. The research organisation shall not serve as a marketing function for commercial products.',
+          },
+          {
+            article: 'VI',
+            title: 'Open Research',
+            content: 'Research outputs should be made publicly accessible whenever possible, subject to intellectual property, licensing, privacy, security and responsible disclosure obligations. YARA Research prefers open publications, open-source implementations and open datasets.',
+          },
+          {
+            article: 'VII',
+            title: 'Collaboration',
+            content: 'Researchers, engineers, students and independent contributors may participate through transparent, project-specific collaboration arrangements with clear terms covering IP ownership, attribution, licensing and contribution expectations.',
+          },
+          {
+            article: 'VIII',
+            title: 'Research Integrity',
+            content: 'All contributors must accurately represent their contributions, disclose relevant conflicts, respect attribution requirements and avoid fabrication, plagiarism or misleading experimental claims. AI tools must not be represented as human authors. AI-assisted research should be disclosed appropriately.',
+          },
+          {
+            article: 'IX',
+            title: 'Governance',
+            content: 'The founding director establishes the initial research agenda, selects research projects and maintains responsibility for publication quality. Research leads and independent reviewers may be appointed as the organisation grows. Governance structures should evolve with the organisation\'s actual capabilities.',
+          },
+          {
+            article: 'X',
+            title: 'Evolution',
+            content: 'YARA Research may evolve into a formally constituted research organisation, institute or other suitable legal structure when its activities, funding and governance justify such a transition. This charter should be reviewed and updated as the organisation matures.',
+          },
+        ].map(({ article, title, content }) => (
+          <section class="charter-article" aria-labelledby={`article-${article}`}>
+            <div class="article-header">
+              <span class="article-num">Article {article}</span>
+              <h2 id={`article-${article}`} class="article-title">{title}</h2>
+            </div>
+            <p class="article-content">{content}</p>
+          </section>
+        ))}
+      </article>
+
+      <div class="charter-footer">
+        <div class="charter-sig">
+          <span class="sig-label">Established</span>
+          <span class="sig-value">November 2026</span>
+        </div>
+        <div class="charter-sig">
+          <span class="sig-label">Version</span>
+          <span class="sig-value">1.0</span>
+        </div>
+        <div class="charter-sig">
+          <span class="sig-label">Status</span>
+          <span class="status-badge status-active">Active</span>
+        </div>
+        <p class="charter-legal-note">
+          This is a founding policy document, not a legally binding constitution.
+          Provisions should be reviewed before use as a binding agreement with
+          collaborators.
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .charter-hero {
+    padding-top: calc(var(--nav-height) + 3rem);
+    padding-bottom: 3rem;
+    background: var(--color-graphite);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .charter-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .charter-breadcrumb a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .charter-breadcrumb a:hover { color: var(--color-text-secondary); }
+
+  .charter-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 54ch;
+  }
+
+  .charter-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+  }
+
+  .charter-preamble {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  /* Document body */
+  .charter-body {
+    padding-block: 4rem;
+    background: var(--color-graphite);
+  }
+
+  .charter-document {
+    display: flex;
+    flex-direction: column;
+    max-width: 64ch;
+    margin-bottom: 4rem;
+  }
+
+  .charter-article {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-block: 2.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .charter-article:last-child { border-bottom: none; }
+
+  .article-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .article-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-electric-blue);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .article-title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.015em;
+  }
+
+  .article-content {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+    padding-left: calc(0.6875rem * 7 + 1rem);
+  }
+
+  /* Footer */
+  .charter-footer {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    background: var(--color-surface);
+    max-width: 64ch;
+    flex-wrap: wrap;
+  }
+
+  .charter-sig {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .sig-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .sig-value {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  .charter-legal-note {
+    width: 100%;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    font-style: italic;
+  }
+
+  @media (max-width: 640px) {
+    .article-content {
+      padding-left: 0;
+    }
+  }
+</style>

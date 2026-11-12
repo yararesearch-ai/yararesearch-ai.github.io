@@ -1,0 +1,379 @@
+---
+// src/pages/about/people.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="People & Contributors | YARA Research"
+  description="The structure, leadership, and community model of YARA Research: an independent, founder-led AI research lab."
+>
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/about">About</a>
+        <span>→</span>
+        <span>People</span>
+      </div>
+      <div class="page-hero-inner">
+        <span class="research-id">Leadership &amp; Collaboration</span>
+        <h1 class="page-title">People &amp; Community</h1>
+        <p class="page-subtitle">
+          YARA Research is a founder-led, independent research initiative. We operate
+          transparently without inflating organizational hierarchy or inventing fictitious
+          affiliations.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="page-section" aria-label="People and leadership details">
+    <div class="container">
+      <div class="people-layout">
+        <!-- Transparent Model Note -->
+        <div class="transparency-banner">
+          <div class="banner-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="16" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12.01" y2="8"/>
+            </svg>
+          </div>
+          <div class="banner-text">
+            <h2 class="banner-title">Radical Transparency in Research</h2>
+            <p>
+              Unlike many organizations that showcase fictional advisors or speculative team lists,
+              YARA Research is founded as an independent, solo-initiated research effort.
+              We believe credibility is earned through reproducible experiments and rigorous publications,
+              not artificial pedigree.
+            </p>
+          </div>
+        </div>
+
+        <!-- Founder & Research Direction -->
+        <div class="section-block">
+          <h2 class="block-title">Founder &amp; Research Director</h2>
+          <div class="profile-card">
+            <div class="profile-meta">
+              <span class="role-tag">Founder · Lead Investigator</span>
+              <span class="location-tag">India / Global</span>
+            </div>
+            <div class="profile-header">
+              <img
+                src="/images/aditya-padwal.jpeg"
+                alt="Aditya Padwal"
+                class="profile-avatar"
+                width="72"
+                height="72"
+                loading="lazy"
+              />
+              <div class="profile-identity">
+                <h3 class="profile-name">Aditya Padwal</h3>
+                <p class="profile-role">Research Direction &amp; Systems Architecture</p>
+              </div>
+            </div>
+            <p class="profile-bio">
+              Initiating the YARA Research agenda to investigate the boundaries of intelligent systems,
+              agentic vs. agentless trade-offs, modular AI runtimes, and accessible local intelligence.
+              Operating the lab with a long-term commitment to open science, peer review, and reproducible code.
+            </p>
+          </div>
+        </div>
+
+        <!-- Research Governance & Contributor Roles -->
+        <div class="section-block">
+          <h2 class="block-title">Collaborative Cohorts &amp; Fellowships</h2>
+          <p class="block-intro">
+            As research programmes expand, YARA Research welcomes collaborators worldwide across defined engagement paths:
+          </p>
+
+          <div class="roles-grid">
+            <div class="role-card">
+              <div class="role-header">
+                <span class="role-badge">Track 01</span>
+                <span class="status-badge status-proposed">In Planning</span>
+              </div>
+              <h3 class="role-name">Research Fellows</h3>
+              <p class="role-desc">
+                Independent researchers, scholars, and graduate students leading specific project workstreams, co-authoring technical reports and papers.
+              </p>
+            </div>
+
+            <div class="role-card">
+              <div class="role-header">
+                <span class="role-badge">Track 02</span>
+                <span class="status-badge status-proposed">In Planning</span>
+              </div>
+              <h3 class="role-name">External Technical Reviewers</h3>
+              <p class="role-desc">
+                Domain specialists providing blinded or open peer review on experimental methodologies, safety evaluations, and benchmark validity prior to release.
+              </p>
+            </div>
+
+            <div class="role-card">
+              <div class="role-header">
+                <span class="role-badge">Track 03</span>
+                <span class="status-badge status-active">Open on GitHub</span>
+              </div>
+              <h3 class="role-name">Open-Source Contributors</h3>
+              <p class="role-desc">
+                Engineers contributing to benchmark implementations, runtime kernels, test suites, and documentation under permissive open-source licenses.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ethical Boundary & Independence -->
+        <div class="section-block">
+          <h2 class="block-title">Commitment to Independence</h2>
+          <p class="block-body">
+            YARA Research operates as a separate, self-directed intellectual initiative. It maintains
+            strict separation of assets, compute, and intellectual property from any employer or commercial
+            sponsor. All findings, benchmarks, and architectures are evaluated solely on empirical evidence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--nav-height) + 4rem);
+    padding-bottom: 4rem;
+    background: var(--color-graphite);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-text-secondary);
+  }
+
+  .page-hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 58ch;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .page-section {
+    padding-block: 4rem 6rem;
+    background: var(--color-graphite);
+  }
+
+  .people-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 58rem;
+  }
+
+  .transparency-banner {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    background: rgba(91, 156, 255, 0.04);
+    border: 1px solid rgba(91, 156, 255, 0.25);
+    border-radius: 4px;
+  }
+
+  .banner-icon {
+    color: var(--color-electric-blue);
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+  }
+
+  .banner-title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .banner-text p {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .section-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .block-title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.015em;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .block-intro, .block-body {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    max-width: 58ch;
+  }
+
+  .profile-card {
+    padding: 2rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .profile-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 0.25rem;
+  }
+
+  .profile-avatar {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(91, 156, 255, 0.35);
+    background: var(--color-surface);
+    box-shadow: 0 0 16px rgba(91, 156, 255, 0.12);
+    flex-shrink: 0;
+  }
+
+  .profile-identity {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .role-tag {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--color-electric-blue);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    background: rgba(91, 156, 255, 0.08);
+    border-radius: 2px;
+  }
+
+  .location-tag {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .profile-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+  }
+
+  .profile-role {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+  }
+
+  .profile-bio {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    margin-top: 0.25rem;
+  }
+
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .role-card {
+    padding: 1.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .role-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .role-badge {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .role-name {
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .role-desc {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .roles-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

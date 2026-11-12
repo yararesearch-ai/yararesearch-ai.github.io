@@ -1,0 +1,386 @@
+---
+// src/pages/about/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { SITE } from '../../data/site';
+---
+
+<BaseLayout
+  title="About | YARA Research"
+  description="YARA Research is an independent, founder-led AI research initiative. Learn about our mission, founding principles and governance."
+>
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <span class="research-id">About</span>
+        <h1 class="page-title">Independent. Rigorous. Open.</h1>
+        <p class="page-subtitle">
+          YARA Research is an independent AI research and engineering initiative,
+          established in India in November 2026 with a global research outlook.
+          We advance the science and engineering of intelligent systems through
+          independent research, rigorous experimentation and open collaboration.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="about-section" aria-label="About YARA Research">
+    <div class="container">
+      <div class="about-layout">
+        <!-- Mission -->
+        <div class="about-block">
+          <h2 class="about-block-title">Mission</h2>
+          <p class="about-block-body">{SITE.mission}</p>
+        </div>
+
+        <!-- Identity -->
+        <div class="about-block">
+          <h2 class="about-block-title">What YARA Research is</h2>
+          <div class="identity-grid">
+            {[
+              { label: 'Identity', value: 'Independent AI Research Lab' },
+              { label: 'Operating model', value: 'Founder-led, distributed and collaborative' },
+              { label: 'Origin', value: 'India' },
+              { label: 'Research reach', value: 'Global' },
+              { label: 'Established', value: 'November 2026' },
+              { label: 'Research output', value: 'Papers, reports, prototypes, benchmarks' },
+              { label: 'Commercial orientation', value: 'Research-first, not initially commercial' },
+              { label: 'Legal status', value: 'Unincorporated research initiative' },
+            ].map(({ label, value }) => (
+              <div class="identity-row">
+                <span class="identity-label">{label}</span>
+                <span class="identity-value">{value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Founding principles -->
+        <div class="about-block">
+          <h2 class="about-block-title">Founding Principles</h2>
+          <div class="principles-list">
+            {[
+              { num: '01', title: 'Research over hype', desc: 'No claims without evidence. We publish what we find, including negative results.' },
+              { num: '02', title: 'Independence', desc: 'Research direction is not dictated by commercial interests or employer relationships.' },
+              { num: '03', title: 'Reproducibility', desc: 'Experiments should be independently verifiable wherever possible.' },
+              { num: '04', title: 'Transparency', desc: 'We publish limitations and negative findings, not only successes.' },
+              { num: '05', title: 'Openness', desc: 'We prefer open publications, source code and datasets where legally possible.' },
+              { num: '06', title: 'Scientific integrity', desc: 'We distinguish hypotheses, experimental observations and established findings.' },
+              { num: '07', title: 'Responsible AI', desc: 'We consider security, safety, privacy and societal implications in our research.' },
+              { num: '08', title: 'Global collaboration', desc: 'Contributions are welcome irrespective of geography or institutional affiliation.' },
+            ].map(({ num, title, desc }) => (
+              <div class="principle-row">
+                <span class="principle-num">{num}</span>
+                <div class="principle-content">
+                  <span class="principle-title">{title}</span>
+                  <span class="principle-desc">{desc}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Important distinctions -->
+        <div class="about-block">
+          <h2 class="about-block-title">Important Distinctions</h2>
+          <div class="distinctions-grid">
+            <div class="distinction-card distinction-card--highlight">
+              <h3>YARA Research</h3>
+              <p>The research organisation. Conducts independent AI research, publishes findings, releases open-source implementations and builds the research community.</p>
+            </div>
+            <div class="distinction-card">
+              <h3>YARA</h3>
+              <p>An independent agentic harness and emerging coding agent. A technology initiative separate from the research organisation.</p>
+            </div>
+            <div class="distinction-card">
+              <h3>YARA Local AI Studio</h3>
+              <p>An independent local model runner and inference environment. May benefit from YARA Research findings but is not the research organisation.</p>
+            </div>
+          </div>
+          <p class="distinction-note">
+            These are distinct initiatives. YARA Research is the intellectual foundation.
+            Products may implement research findings, but the research organisation
+            does not exist to market the products.
+          </p>
+        </div>
+
+        <!-- Navigation to sub-pages -->
+        <div class="about-nav">
+          <a href="/about/charter" class="about-nav-item">
+            <span class="about-nav-title">Founding Charter</span>
+            <span class="about-nav-desc">The constitutional document establishing YARA Research's purpose, mission and operating principles</span>
+            <span class="about-nav-arrow">→</span>
+          </a>
+          <a href="/about/governance" class="about-nav-item">
+            <span class="about-nav-title">Governance</span>
+            <span class="about-nav-desc">Research governance structure, roles, review processes and policies</span>
+            <span class="about-nav-arrow">→</span>
+          </a>
+          <a href="/about/people" class="about-nav-item">
+            <span class="about-nav-title">People &amp; Community</span>
+            <span class="about-nav-desc">Founder-led structure, leadership integrity and global contribution tracks</span>
+            <span class="about-nav-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--nav-height) + 4rem);
+    padding-bottom: 4rem;
+    background: var(--color-graphite);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 54ch;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .about-section {
+    padding-block: 4rem 6rem;
+    background: var(--color-graphite);
+  }
+
+  .about-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 72rem;
+  }
+
+  /* Block */
+  .about-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .about-block-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--color-text-primary);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .about-block-body {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+    max-width: 60ch;
+  }
+
+  /* Identity grid */
+  .identity-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--color-border);
+    max-width: 56rem;
+  }
+
+  .identity-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1rem 1.25rem;
+    background: var(--color-surface);
+  }
+
+  .identity-label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .identity-value {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+  }
+
+  /* Principles list */
+  .principles-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 64rem;
+  }
+
+  .principle-row {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.125rem 1.5rem;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    align-items: baseline;
+  }
+
+  .principle-row:last-child { border-bottom: none; }
+
+  .principle-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--color-electric-blue);
+    flex-shrink: 0;
+    padding-top: 0.1rem;
+  }
+
+  .principle-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .principle-title {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .principle-desc {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+  }
+
+  /* Distinctions */
+  .distinctions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--color-border);
+    max-width: 56rem;
+    margin-bottom: 1rem;
+  }
+
+  .distinction-card {
+    padding: 1.5rem;
+    background: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .distinction-card--highlight {
+    background: rgba(91, 156, 255, 0.04);
+    border-top: 2px solid var(--color-electric-blue);
+  }
+
+  .distinction-card h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .distinction-card p {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .distinction-note {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    max-width: 54ch;
+    padding: 0.875rem 1rem;
+    border-left: 2px solid var(--color-border);
+    background: rgba(255,255,255,0.015);
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* Navigation */
+  .about-nav {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 56rem;
+  }
+
+  .about-nav-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .about-nav-item:last-child { border-bottom: none; }
+  .about-nav-item:hover { background: var(--color-elevated); }
+
+  .about-nav-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+  }
+
+  .about-nav-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  .about-nav-arrow {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    transition: transform 0.2s, color 0.2s;
+  }
+
+  .about-nav-item:hover .about-nav-arrow {
+    transform: translateX(4px);
+    color: var(--color-electric-blue);
+  }
+
+  @media (max-width: 768px) {
+    .identity-grid, .distinctions-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-nav-item {
+      grid-template-columns: 1fr auto;
+    }
+    .about-nav-desc { display: none; }
+  }
+</style>

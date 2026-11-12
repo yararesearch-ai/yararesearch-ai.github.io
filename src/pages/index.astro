@@ -1,0 +1,62 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/react/Hero';
+import ResearchPhilosophy from '../components/react/ResearchPhilosophy';
+import ResearchProgrammes from '../components/react/ResearchProgrammes';
+import FeaturedProjects from '../components/react/FeaturedProjects';
+import ResearchLifecycle from '../components/react/ResearchLifecycle';
+import PublicationsSection from '../components/react/PublicationsSection';
+import OpenSourceSection from '../components/react/OpenSourceSection';
+import CommunitySection from '../components/react/CommunitySection';
+import ClosingCTA from '../components/react/ClosingCTA';
+
+// Detect reduced motion from headers (server-side) — client will verify
+const reducedMotion = false;
+---
+
+<BaseLayout
+  title="YARA Research | The Intelligence Frontier"
+  description="YARA Research is an independent AI research and engineering organisation exploring the foundations, architectures and emerging possibilities of intelligent systems."
+>
+  <!-- Skip-to-main link for keyboard users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <Hero
+    reducedMotion={reducedMotion}
+    client:load
+  />
+
+  <ResearchPhilosophy client:visible />
+  <ResearchProgrammes client:visible />
+  <FeaturedProjects client:visible />
+  <ResearchLifecycle client:visible />
+  <PublicationsSection client:visible />
+  <OpenSourceSection client:visible />
+  <CommunitySection client:visible />
+  <ClosingCTA
+    reducedMotion={reducedMotion}
+    client:visible
+  />
+</BaseLayout>
+
+<style is:global>
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 1rem;
+    z-index: 9999;
+    padding: 0.75rem 1.25rem;
+    background: var(--color-electric-blue);
+    color: #090B10;
+    font-weight: 700;
+    font-size: 0.875rem;
+    border-radius: 0 0 4px 4px;
+    text-decoration: none;
+    transition: top 0.2s;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+</style>

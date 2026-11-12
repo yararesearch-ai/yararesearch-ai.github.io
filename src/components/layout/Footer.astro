@@ -1,0 +1,320 @@
+---
+// src/components/layout/Footer.astro
+---
+
+<footer class="footer" aria-label="Site footer">
+  <div class="footer-container">
+    <!-- Top row -->
+    <div class="footer-top">
+      <!-- Brand + mission -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="28" height="28" rx="4" fill="rgba(91, 156, 255, 0.08)"/>
+            <path d="M8 7L14 14M20 7L14 14M14 14V21" stroke="#5B9CFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="22" cy="6" r="1.5" fill="#56D9E8"/>
+          </svg>
+          <span class="footer-logo-name">YARA Research</span>
+        </div>
+        <p class="footer-mission">
+          Advancing the science and engineering of intelligent systems through independent research, rigorous experimentation, open collaboration and reproducible innovation.
+        </p>
+        <div class="footer-tags">
+          <span class="footer-tag">Independent Research</span>
+          <span class="footer-tag">AI Systems</span>
+          <span class="footer-tag">Open Collaboration</span>
+        </div>
+      </div>
+
+      <!-- Navigation columns -->
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-nav-col">
+          <h3 class="footer-nav-heading">Research</h3>
+          <ul class="footer-nav-list">
+            <li><a href="/research" class="footer-nav-link">Overview</a></li>
+            <li><a href="/research/programmes" class="footer-nav-link">Programmes</a></li>
+            <li><a href="/research/projects" class="footer-nav-link">Projects</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h3 class="footer-nav-heading">Publications</h3>
+          <ul class="footer-nav-list">
+            <li><a href="/publications" class="footer-nav-link">All Publications</a></li>
+            <li><a href="/publications?type=technical-report" class="footer-nav-link">Technical Reports</a></li>
+            <li><a href="/publications?type=working-paper" class="footer-nav-link">Working Papers</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h3 class="footer-nav-heading">Open Source</h3>
+          <ul class="footer-nav-list">
+            <li><a href="/open-source" class="footer-nav-link">Repositories</a></li>
+            <li><a href="https://github.com/yararesearch-ai" target="_blank" rel="noopener noreferrer" class="footer-nav-link footer-nav-link--ext">GitHub →</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h3 class="footer-nav-heading">Organisation</h3>
+          <ul class="footer-nav-list">
+            <li><a href="/community" class="footer-nav-link">Community</a></li>
+            <li><a href="/about" class="footer-nav-link">About</a></li>
+            <li><a href="/about/people" class="footer-nav-link">People</a></li>
+            <li><a href="/about/charter" class="footer-nav-link">Charter</a></li>
+            <li><a href="/about/governance" class="footer-nav-link">Governance</a></li>
+            <li><a href="/contact" class="footer-nav-link">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Separator -->
+    <div class="footer-separator"></div>
+
+    <!-- Bottom row -->
+    <div class="footer-bottom">
+      <div class="footer-meta">
+        <span class="footer-mono">YARA-RESEARCH · INDIA · EST. 2026</span>
+        <span class="footer-mono footer-copyright">© 2026 YARA Research. Independent research initiative.</span>
+      </div>
+
+      <!-- Center social links -->
+      <div class="footer-socials" aria-label="Social media links">
+        <a
+          href="https://www.linkedin.com/company/135265392/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-social-link"
+          aria-label="YARA Research on LinkedIn"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <a
+          href="https://github.com/yararesearch-ai"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-social-link"
+          aria-label="YARA Research on GitHub"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="footer-legal">
+        <a href="/about" class="footer-legal-link">Privacy</a>
+        <span class="footer-legal-sep">·</span>
+        <a href="/contact" class="footer-legal-link">Contact</a>
+        <span class="footer-legal-sep">·</span>
+        <a href="/sitemap.xml" class="footer-legal-link">Sitemap</a>
+        <span class="footer-legal-sep">·</span>
+        <a href="/llms.txt" class="footer-legal-link">llms.txt</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-midnight-navy);
+    border-top: 1px solid var(--color-border);
+    padding-block: 4rem 2rem;
+  }
+
+  .footer-container {
+    max-width: var(--max-width-content);
+    margin-inline: auto;
+    padding-inline: var(--space-container);
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+  }
+
+  /* Brand */
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .footer-logo-name {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
+  }
+
+  .footer-mission {
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    max-width: 28ch;
+  }
+
+  .footer-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  .footer-tag {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+  }
+
+  /* Nav */
+  .footer-nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .footer-nav-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-nav-heading {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .footer-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-nav-link {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    transition: color var(--duration-fast);
+  }
+
+  .footer-nav-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  .footer-nav-link--ext {
+    color: var(--color-text-muted);
+  }
+
+  /* Bottom */
+  .footer-separator {
+    height: 1px;
+    background: var(--color-border);
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .footer-mono {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+
+  .footer-legal {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer-legal-link {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    transition: color var(--duration-fast);
+  }
+
+  .footer-legal-link:hover {
+    color: var(--color-text-secondary);
+  }
+
+  .footer-legal-sep {
+    font-size: 0.75rem;
+    color: var(--color-border);
+  }
+
+  .footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer-social-link {
+    color: var(--color-text-muted);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--duration-fast);
+  }
+
+  .footer-social-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  @media (max-width: 1024px) {
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .footer-mission {
+      max-width: 40ch;
+    }
+
+    .footer-nav {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer-nav {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

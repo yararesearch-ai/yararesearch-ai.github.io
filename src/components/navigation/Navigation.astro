@@ -1,0 +1,1301 @@
+---
+// src/components/navigation/Navigation.astro
+// Primary site navigation — YARA Research proprietary design language
+---
+
+<header class="nav-root" id="site-nav" aria-label="Site navigation">
+  <div class="nav-container">
+    <!-- Brand -->
+    <a href="/" class="nav-brand" aria-label="YARA Research | Home">
+      <div class="nav-logo-mark" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="28" height="28" rx="4" fill="rgba(91, 156, 255, 0.08)"/>
+          <path d="M8 7L14 14M20 7L14 14M14 14V21" stroke="#5B9CFF" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22" cy="6" r="1.5" fill="#56D9E8"/>
+        </svg>
+      </div>
+      <div class="nav-brand-text">
+        <span class="nav-brand-name">YARA Research</span>
+        <span class="nav-brand-descriptor">Independent AI Research &amp; Engineering</span>
+      </div>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="nav-links" aria-label="Primary navigation">
+      
+      <!-- YARA Hub Dropdown -->
+      <div class="nav-item-dropdown" id="yara-dropdown">
+        <button
+          type="button"
+          class="nav-link nav-link--yara"
+          id="yara-menu-button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="yara-mega-menu"
+        >
+          <span class="yara-dot" aria-hidden="true"></span>
+          <span>YARA</span>
+          <svg class="dropdown-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+            <path d="M2.5 3.75L5 6.25L7.5 3.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <!-- YARA Bespoke Console Menu (Centered to Navigation Container) -->
+        <div class="mega-menu" id="yara-mega-menu" role="region" aria-label="YARA Lab Console">
+          <div class="yara-console">
+            
+            <!-- Top Console Accent Bar -->
+            <div class="console-accent-bar" aria-hidden="true"></div>
+
+            <!-- Console Header Strip -->
+            <div class="console-header">
+              <div class="console-header-left">
+                <span class="console-badge">YARA LAB CONSOLE</span>
+                <span class="console-sep">/</span>
+                <span class="console-desc">Independent Research &amp; Autonomous Systems</span>
+              </div>
+              <div class="console-header-right">
+                <span class="console-status-dot"></span>
+                <span class="console-status-text">LAB ACTIVE</span>
+              </div>
+            </div>
+
+            <!-- 3-Column YARA Matrix -->
+            <div class="console-matrix">
+              
+              <!-- Column 1: Research Workstreams -->
+              <div class="matrix-col">
+                <div class="col-header">
+                  <span class="col-num">01</span>
+                  <h3 class="col-title">RESEARCH &amp; SYSTEMS</h3>
+                </div>
+                <div class="col-links">
+                  <a href="/research" class="console-card-link">
+                    <div class="console-card-spotlight">
+                      <span class="spotlight-tag">ACTIVE AGENDA</span>
+                      <h4 class="spotlight-title">Research Overview</h4>
+                      <p class="spotlight-desc">Six fundamental programmes exploring intelligence, reasoning &amp; runtimes.</p>
+                    </div>
+                  </a>
+                  <a href="/research/programmes" class="matrix-link">
+                    <span class="matrix-link-name">Programmes</span>
+                    <span class="matrix-link-meta">RP-01 to RP-06</span>
+                  </a>
+                  <a href="/research/projects" class="matrix-link">
+                    <span class="matrix-link-name">Active Projects</span>
+                    <span class="matrix-link-meta">3 Codebases</span>
+                  </a>
+                  <a href="/publications" class="matrix-link">
+                    <span class="matrix-link-name">Publications</span>
+                    <span class="matrix-link-meta">Peer-Reviewed &amp; Reports</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Column 2: Governance & Organization -->
+              <div class="matrix-col">
+                <div class="col-header">
+                  <span class="col-num">02</span>
+                  <h3 class="col-title">THE INITIATIVE</h3>
+                </div>
+                <div class="col-links">
+                  <a href="/about/charter" class="matrix-link">
+                    <span class="matrix-link-name">Founding Charter</span>
+                    <span class="matrix-link-meta">Mission &amp; Independence</span>
+                  </a>
+                  <a href="/about/people" class="matrix-link">
+                    <span class="matrix-link-name">People &amp; Fellows</span>
+                    <span class="matrix-link-meta">Leadership &amp; Cohorts</span>
+                  </a>
+                  <a href="/about/governance" class="matrix-link">
+                    <span class="matrix-link-name">Governance</span>
+                    <span class="matrix-link-meta">Methodology &amp; Ethics</span>
+                  </a>
+                  <a href="/community" class="matrix-link">
+                    <span class="matrix-link-name">Community</span>
+                    <span class="matrix-link-meta">Collaborators &amp; Reviewers</span>
+                  </a>
+                  <a href="/contact" class="matrix-link matrix-link--highlight">
+                    <span class="matrix-link-name">Direct Inquiries</span>
+                    <span class="matrix-link-meta">founder@yararesearch.com ↗</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Column 3: Store & Ecosystem Artifacts -->
+              <div class="matrix-col matrix-col--store">
+                <div class="col-header">
+                  <span class="col-num">03</span>
+                  <h3 class="col-title">ARTIFACTS &amp; MERCH</h3>
+                </div>
+                
+                <!-- Bespoke Merch Card -->
+                <div class="merch-card">
+                  <div class="merch-card-header">
+                    <span class="merch-status-pill">WIP · STOREFRONT</span>
+                    <span class="merch-tag">YARA GEAR</span>
+                  </div>
+                  <h4 class="merch-title">Lab Store &amp; Apparel</h4>
+                  <p class="merch-desc">
+                    Official research lab garments, hardware artifacts, and print publications.
+                  </p>
+                  
+                  <!-- Abstract YARA Hardware/Apparel Glyph -->
+                  <div class="merch-visual" aria-hidden="true">
+                    <div class="merch-badge-box">
+                      <span class="merch-coord">YR // SWAG-01</span>
+                      <div class="merch-glyph-line"></div>
+                      <span class="merch-edition">LAB EDITION · EST. 2026</span>
+                    </div>
+                  </div>
+
+                  <a
+                    href="https://shop.yararesearch.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="merch-cta-btn"
+                  >
+                    <span>Visit Store</span>
+                    <span class="merch-arrow">↗</span>
+                  </a>
+                </div>
+
+                <!-- GitHub direct footer link -->
+                <a
+                  href="https://github.com/yararesearch-ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="ecosystem-gh-link"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                  <span>Open-Source Repositories ↗</span>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- Console Telemetry Footer -->
+            <div class="console-footer">
+              <div class="console-footer-info">
+                <span class="console-mono">YR-OS // INDEPENDENT INITIATIVE</span>
+                <span class="console-foot-sep">·</span>
+                <span class="console-mono">REPRODUCIBLE CODE</span>
+                <span class="console-foot-sep">·</span>
+                <span class="console-mono">OPEN SCIENCE</span>
+              </div>
+              <a href="/llms.txt" class="console-llm-link">llms.txt ↗</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <a href="/research" class="nav-link">RESEARCH</a>
+      <a href="/publications" class="nav-link">PUBLICATIONS</a>
+      <a href="/open-source" class="nav-link">OPEN SOURCE</a>
+      <a href="/community" class="nav-link">COMMUNITY</a>
+      <a href="/about" class="nav-link">ABOUT</a>
+    </nav>
+
+    <!-- Actions -->
+    <div class="nav-actions">
+      <!-- Blueprint Theme Toggle Button -->
+      <button 
+        type="button" 
+        class="nav-theme-toggle" 
+        id="theme-toggle" 
+        aria-label="Toggle Laboratory Theme (Dark / Blueprint Light)" 
+        title="Toggle Blueprint Light Theme"
+      >
+        <!-- Sun Icon (displayed in Dark mode) -->
+        <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <!-- Moon Icon (displayed in Light mode) -->
+        <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+
+      <a 
+        href="https://github.com/yararesearch-ai" 
+        class="nav-github" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        aria-label="YARA Research on GitHub"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+      </a>
+
+      <!-- Mobile menu toggle -->
+      <button 
+        class="nav-mobile-toggle" 
+        id="nav-toggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <div class="mobile-group-title">RESEARCH &amp; SYSTEMS</div>
+      <a href="/research" class="mobile-nav-link">RESEARCH OVERVIEW</a>
+      <a href="/research/programmes" class="mobile-nav-link">PROGRAMMES (RP-01 - 06)</a>
+      <a href="/research/projects" class="mobile-nav-link">PROJECT CODEBASES</a>
+      <a href="/publications" class="mobile-nav-link">PUBLICATIONS</a>
+      <a href="/open-source" class="mobile-nav-link">OPEN SOURCE</a>
+      
+      <div class="mobile-group-title" style="margin-top: 1rem;">INITIATIVE</div>
+      <a href="/about" class="mobile-nav-link">ABOUT LAB</a>
+      <a href="/about/people" class="mobile-nav-link">PEOPLE &amp; FELLOWS</a>
+      <a href="/about/charter" class="mobile-nav-link">FOUNDING CHARTER</a>
+      <a href="/about/governance" class="mobile-nav-link">GOVERNANCE</a>
+      <a href="/community" class="mobile-nav-link">COMMUNITY</a>
+      <a href="/contact" class="mobile-nav-link">CONTACT &amp; INQUIRIES</a>
+      
+      <div class="mobile-group-title" style="margin-top: 1rem;">STORE</div>
+      <a
+        href="https://shop.yararesearch.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-nav-link mobile-nav-link--shop"
+      >
+        <span>LAB APPAREL / MERCH</span>
+        <span class="mobile-wip-pill">WIP ↗</span>
+      </a>
+      
+      <div class="mobile-nav-separator"></div>
+      <a href="https://github.com/yararesearch-ai" class="mobile-nav-link mobile-nav-link--muted" target="_blank" rel="noopener noreferrer">
+        GITHUB REPOSITORIES ↗
+      </a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav-root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    background: rgba(9, 11, 16, 0.95);
+    backdrop-filter: blur(16px) saturate(1.5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+    border-bottom: 1px solid var(--color-border-subtle);
+    transition: background var(--duration-normal) var(--easing-in-out),
+                border-color var(--duration-normal) var(--easing-in-out);
+  }
+
+  .nav-root.scrolled {
+    background: #090B10;
+    border-color: var(--color-border);
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: var(--max-width-content);
+    margin-inline: auto;
+    padding-inline: var(--space-container);
+    gap: 1.5rem;
+    position: relative; /* Anchor for centered mega menu */
+  }
+
+  /* Brand */
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: opacity var(--duration-fast);
+  }
+
+  .nav-brand:hover {
+    opacity: 0.85;
+  }
+
+  .nav-logo-mark {
+    flex-shrink: 0;
+  }
+
+  .nav-brand-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-brand-name {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .nav-brand-descriptor {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  /* Desktop nav links - position static allows mega menu to center against .nav-container */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    position: static;
+  }
+
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    padding: 0.4rem 0.65rem;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color var(--duration-fast), background var(--duration-fast);
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .nav-link:hover {
+    color: var(--color-text-primary);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-link[aria-current="page"] {
+    color: var(--color-electric-blue);
+  }
+
+  /* YARA Dropdown Button */
+  .nav-item-dropdown {
+    position: static; /* Allows mega menu to align directly to .nav-container center */
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .nav-link--yara {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.32rem 0.75rem;
+    background: rgba(91, 156, 255, 0.08);
+    border: 1px solid rgba(91, 156, 255, 0.32);
+    border-radius: 3px;
+    color: var(--color-text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all var(--duration-fast) ease;
+  }
+
+  .yara-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-intelligence-cyan);
+    box-shadow: 0 0 8px var(--color-intelligence-cyan);
+  }
+
+  .dropdown-chevron {
+    transition: transform 0.2s ease;
+    color: var(--color-text-muted);
+  }
+
+  .nav-item-dropdown:hover .nav-link--yara,
+  .nav-item-dropdown:focus-within .nav-link--yara {
+    background: rgba(91, 156, 255, 0.18);
+    border-color: var(--color-electric-blue);
+    color: #FFFFFF;
+  }
+
+  .nav-item-dropdown:hover .dropdown-chevron,
+  .nav-item-dropdown:focus-within .dropdown-chevron {
+    transform: rotate(180deg);
+    color: #FFFFFF;
+  }
+
+  /* YARA Console Mega Menu - Perfectly Centered to Nav Container, 100% Solid Opacity */
+  .mega-menu {
+    position: absolute;
+    top: calc(var(--nav-height) + 2px);
+    left: 50%;
+    transform: translateX(-50%) translateY(6px) scale(0.99);
+    width: min(980px, calc(100% - 2rem));
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 1000;
+    transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.2s;
+  }
+
+  /* Invisible hover bridge */
+  .mega-menu::before {
+    content: '';
+    position: absolute;
+    top: -16px;
+    left: 0;
+    right: 0;
+    height: 16px;
+    background: transparent;
+  }
+
+  .nav-item-dropdown:hover .mega-menu,
+  .nav-item-dropdown:focus-within .mega-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  /* Solid opaque background to completely prevent hero text bleed-through */
+  .yara-console {
+    background: #0B0F19; /* Solid opaque space-obsidian */
+    border: 1px solid rgba(91, 156, 255, 0.28);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.95),
+                0 0 0 1px rgba(91, 156, 255, 0.12),
+                0 0 40px rgba(91, 156, 255, 0.15);
+  }
+
+  /* Top Accent gradient hairline */
+  .console-accent-bar {
+    height: 2px;
+    background: linear-gradient(90deg, #5B9CFF 0%, #56D9E8 50%, #8B83FF 100%);
+  }
+
+  /* Console Header Strip */
+  .console-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.75rem;
+    background: #0E1422; /* Solid dark bar */
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .console-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+  }
+
+  .console-badge {
+    color: var(--color-electric-blue);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .console-sep {
+    color: var(--color-text-muted);
+  }
+
+  .console-desc {
+    color: var(--color-text-secondary);
+  }
+
+  .console-header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .console-status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10B981;
+    box-shadow: 0 0 6px #10B981;
+  }
+
+  /* 3-Column Matrix - Solid background with generous column gaps */
+  .console-matrix {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.05fr;
+    gap: 2rem;
+    padding: 1.75rem 2rem;
+    background: #0B0F19; /* Solid opaque */
+  }
+
+  .matrix-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+  }
+
+  .col-header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .col-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-electric-blue);
+    font-weight: 600;
+  }
+
+  .col-title {
+    font-family: var(--font-display);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: 0.06em;
+  }
+
+  .col-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  /* Spotlight Card in Col 1 */
+  .console-card-link {
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+  }
+
+  .console-card-spotlight {
+    padding: 0.85rem 1rem;
+    background: #111728; /* Solid opaque card */
+    border: 1px solid rgba(91, 156, 255, 0.25);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    transition: all 0.15s ease;
+  }
+
+  .console-card-spotlight:hover {
+    background: #162035;
+    border-color: var(--color-electric-blue);
+    transform: translateY(-1px);
+  }
+
+  .spotlight-tag {
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    color: var(--color-intelligence-cyan);
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+
+  .spotlight-title {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .spotlight-desc {
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: var(--color-text-secondary);
+  }
+
+  /* Matrix Link Row with robust spacing */
+  .matrix-link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background 0.15s ease;
+    min-width: 0;
+  }
+
+  .matrix-link:hover {
+    background: #141A2B;
+  }
+
+  .matrix-link-name {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .matrix-link-meta {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    text-align: right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .matrix-link:hover .matrix-link-meta {
+    color: var(--color-electric-blue);
+  }
+
+  .matrix-link--highlight {
+    margin-top: 0.35rem;
+    background: rgba(86, 217, 232, 0.05);
+    border: 1px dashed rgba(86, 217, 232, 0.3);
+  }
+
+  .matrix-link--highlight:hover {
+    background: rgba(86, 217, 232, 0.1);
+    border-color: var(--color-intelligence-cyan);
+  }
+
+  .matrix-link--highlight .matrix-link-meta {
+    color: var(--color-intelligence-cyan);
+  }
+
+  /* Column 3: Merch Card */
+  .merch-card {
+    padding: 1.15rem;
+    background: #111728; /* Solid opaque card */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .merch-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .merch-status-pill {
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    font-weight: 700;
+    color: #090B10;
+    background: var(--color-intelligence-cyan);
+    padding: 0.12rem 0.4rem;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+  }
+
+  .merch-tag {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--color-text-muted);
+  }
+
+  .merch-title {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .merch-desc {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+  }
+
+  .merch-visual {
+    padding: 0.75rem;
+    background: #090C14;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 3px;
+  }
+
+  .merch-badge-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    text-align: center;
+  }
+
+  .merch-coord {
+    font-size: 0.625rem;
+    color: var(--color-electric-blue);
+    letter-spacing: 0.12em;
+  }
+
+  .merch-glyph-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(91, 156, 255, 0.4), transparent);
+  }
+
+  .merch-edition {
+    font-size: 0.5625rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+  }
+
+  .merch-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(91, 156, 255, 0.12);
+    border: 1px solid rgba(91, 156, 255, 0.35);
+    border-radius: 3px;
+    color: var(--color-text-primary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .merch-cta-btn:hover {
+    background: var(--color-electric-blue);
+    color: #090B10;
+    border-color: var(--color-electric-blue);
+  }
+
+  .ecosystem-gh-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .ecosystem-gh-link:hover {
+    color: var(--color-electric-blue);
+  }
+
+  /* Console Telemetry Footer */
+  .console-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 2rem;
+    background: #080B12; /* Solid dark bar */
+    border-top: 1px solid var(--color-border);
+  }
+
+  .console-footer-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.06em;
+  }
+
+  .console-foot-sep {
+    color: rgba(255, 255, 255, 0.15);
+  }
+
+  .console-llm-link {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .console-llm-link:hover {
+    color: var(--color-electric-blue);
+  }
+
+  /* Actions & GitHub */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .nav-theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+    transition: color var(--duration-fast),
+                border-color var(--duration-fast),
+                background var(--duration-fast);
+  }
+
+  .nav-theme-toggle:hover {
+    color: var(--color-text-primary);
+    border-color: var(--color-electric-blue);
+    background: rgba(91, 156, 255, 0.08);
+  }
+
+  :global(:root) .theme-icon-moon,
+  :global([data-theme="dark"]) .theme-icon-moon {
+    display: none !important;
+  }
+  :global(:root) .theme-icon-sun,
+  :global([data-theme="dark"]) .theme-icon-sun {
+    display: block !important;
+  }
+
+  :global([data-theme="light"]) .theme-icon-sun,
+  :global(html.light) .theme-icon-sun {
+    display: none !important;
+  }
+  :global([data-theme="light"]) .theme-icon-moon,
+  :global(html.light) .theme-icon-moon {
+    display: block !important;
+    color: #1D4ED8 !important;
+  }
+
+  /* Light Theme overrides for Navigation & Console (Cold Laboratory Blueprint) */
+  :global([data-theme="light"]) .nav-root,
+  :global(html.light) .nav-root {
+    background: rgba(240, 244, 248, 0.94) !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.12) !important;
+  }
+
+  :global([data-theme="light"]) .nav-root.scrolled,
+  :global(html.light) .nav-root.scrolled {
+    background: #F0F4F8 !important;
+    border-color: rgba(15, 23, 42, 0.15) !important;
+  }
+
+  :global([data-theme="light"]) .nav-brand-name {
+    color: #0B132B !important;
+  }
+
+  :global([data-theme="light"]) .nav-brand-descriptor {
+    color: #64748B !important;
+  }
+
+  :global([data-theme="light"]) .nav-link {
+    color: #334155 !important;
+  }
+
+  :global([data-theme="light"]) .nav-link:hover {
+    color: #0B132B !important;
+    background: rgba(15, 23, 42, 0.06) !important;
+  }
+
+  :global([data-theme="light"]) .nav-link[aria-current="page"] {
+    color: #1D4ED8 !important;
+  }
+
+  :global([data-theme="light"]) .nav-link--yara {
+    background: rgba(29, 78, 216, 0.06) !important;
+    border-color: rgba(29, 78, 216, 0.3) !important;
+    color: #0B132B !important;
+  }
+
+  :global([data-theme="light"]) .nav-item-dropdown:hover .nav-link--yara,
+  :global([data-theme="light"]) .nav-item-dropdown:focus-within .nav-link--yara {
+    background: rgba(29, 78, 216, 0.12) !important;
+    border-color: #1D4ED8 !important;
+    color: #1D4ED8 !important;
+  }
+
+  :global([data-theme="light"]) .dropdown-chevron {
+    color: #64748B !important;
+  }
+
+  :global([data-theme="light"]) .nav-item-dropdown:hover .dropdown-chevron {
+    color: #1D4ED8 !important;
+  }
+
+  :global([data-theme="light"]) .nav-theme-toggle {
+    border-color: rgba(15, 23, 42, 0.15) !important;
+    color: #334155 !important;
+  }
+
+  :global([data-theme="light"]) .nav-theme-toggle:hover {
+    border-color: #1D4ED8 !important;
+    background: rgba(29, 78, 216, 0.08) !important;
+    color: #1D4ED8 !important;
+  }
+
+  :global([data-theme="light"]) .nav-github {
+    border-color: rgba(15, 23, 42, 0.15) !important;
+    color: #334155 !important;
+  }
+
+  :global([data-theme="light"]) .nav-github:hover {
+    border-color: #1D4ED8 !important;
+    background: rgba(29, 78, 216, 0.08) !important;
+    color: #1D4ED8 !important;
+  }
+
+  :global([data-theme="light"]) .yara-console,
+  :global(html.light) .yara-console {
+    background: #FFFFFF !important;
+    border-color: rgba(29, 78, 216, 0.25) !important;
+    box-shadow: 0 24px 64px rgba(15, 23, 42, 0.12),
+                0 0 0 1px rgba(29, 78, 216, 0.1) !important;
+  }
+
+  :global([data-theme="light"]) .console-header,
+  :global(html.light) .console-header {
+    background: #F8FAFC !important;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.08) !important;
+  }
+
+  :global([data-theme="light"]) .console-matrix,
+  :global(html.light) .console-matrix {
+    background: #FFFFFF !important;
+  }
+
+  :global([data-theme="light"]) .console-card-spotlight,
+  :global(html.light) .console-card-spotlight {
+    background: #F1F5F9 !important;
+    border-color: rgba(29, 78, 216, 0.2) !important;
+  }
+
+  :global([data-theme="light"]) .console-card-spotlight:hover {
+    background: #E2E8F0 !important;
+  }
+
+  :global([data-theme="light"]) .matrix-link:hover {
+    background: #F1F5F9 !important;
+  }
+
+  :global([data-theme="light"]) .merch-card,
+  :global(html.light) .merch-card {
+    background: #F8FAFC !important;
+    border-color: rgba(15, 23, 42, 0.1) !important;
+  }
+
+  :global([data-theme="light"]) .merch-visual,
+  :global(html.light) .merch-visual {
+    background: #EDF2F7 !important;
+    border-color: rgba(15, 23, 42, 0.08) !important;
+  }
+
+  :global([data-theme="light"]) .merch-coord {
+    color: #1D4ED8 !important;
+  }
+
+  :global([data-theme="light"]) .merch-cta-btn {
+    background: rgba(29, 78, 216, 0.08) !important;
+    border-color: rgba(29, 78, 216, 0.3) !important;
+    color: #1D4ED8 !important;
+  }
+
+  :global([data-theme="light"]) .merch-cta-btn:hover {
+    background: #1D4ED8 !important;
+    color: #FFFFFF !important;
+  }
+
+  :global([data-theme="light"]) .console-footer,
+  :global(html.light) .console-footer {
+    background: #F1F5F9 !important;
+    border-top: 1px solid rgba(15, 23, 42, 0.08) !important;
+  }
+
+  :global([data-theme="light"]) .mobile-menu {
+    background: rgba(240, 244, 248, 0.98) !important;
+  }
+
+  :global([data-theme="light"]) .mobile-nav-link {
+    color: #334155 !important;
+    border-color: rgba(15, 23, 42, 0.08) !important;
+  }
+
+  :global([data-theme="light"]) .mobile-nav-link:hover {
+    color: #0B132B !important;
+  }
+
+  :global([data-theme="light"]) .toggle-line {
+    background: #0B132B !important;
+  }
+
+  .nav-github {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    transition: color var(--duration-fast),
+                border-color var(--duration-fast),
+                background var(--duration-fast);
+  }
+
+  .nav-github:hover {
+    color: var(--color-text-primary);
+    border-color: rgba(91, 156, 255, 0.3);
+    background: rgba(91, 156, 255, 0.06);
+  }
+
+  /* Mobile toggle */
+  .nav-mobile-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    padding: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: border-color var(--duration-fast);
+  }
+
+  .nav-mobile-toggle:hover {
+    border-color: rgba(91, 156, 255, 0.3);
+  }
+
+  .toggle-line {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background: var(--color-text-secondary);
+    border-radius: 1px;
+    transition: transform var(--duration-normal) var(--easing-out),
+                opacity var(--duration-normal);
+  }
+
+  .nav-mobile-toggle[aria-expanded="true"] .toggle-line:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .nav-mobile-toggle[aria-expanded="true"] .toggle-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-mobile-toggle[aria-expanded="true"] .toggle-line:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(9, 11, 16, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 1.5rem var(--space-container);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--duration-normal) var(--easing-out),
+                visibility var(--duration-normal);
+  }
+
+  .mobile-menu[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .mobile-group-title {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    color: var(--color-electric-blue);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .mobile-nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: color var(--duration-fast);
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link:active {
+    color: var(--color-text-primary);
+  }
+
+  .mobile-nav-link--shop {
+    color: var(--color-intelligence-cyan);
+  }
+
+  .mobile-wip-pill {
+    font-size: 0.625rem;
+    background: rgba(86, 217, 232, 0.15);
+    border: 1px solid var(--color-intelligence-cyan);
+    color: var(--color-intelligence-cyan);
+    padding: 0.15rem 0.4rem;
+    border-radius: 2px;
+  }
+
+  .mobile-nav-separator {
+    height: 1px;
+    background: var(--color-border);
+    margin: 1rem 0;
+  }
+
+  .mobile-nav-link--muted {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Responsive breakpoints */
+  @media (max-width: 960px) {
+    .nav-links {
+      display: none;
+    }
+
+    .nav-mobile-toggle {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-brand-text {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const nav = document.getElementById('site-nav');
+  const yaraDropdown = document.getElementById('yara-dropdown');
+  const yaraButton = document.getElementById('yara-menu-button');
+
+  // Mobile menu toggle
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    menu?.setAttribute('aria-hidden', String(isOpen));
+  });
+
+  // Scroll state
+  const updateScrollState = () => {
+    if (window.scrollY > 10) {
+      nav?.classList.add('scrolled');
+    } else {
+      nav?.classList.remove('scrolled');
+    }
+  };
+
+  window.addEventListener('scroll', updateScrollState, { passive: true });
+  updateScrollState();
+
+  // Active link highlight
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.nav-link').forEach((link) => {
+    const href = link.getAttribute('href');
+    if (href && (href === currentPath || (href !== '/' && currentPath.startsWith(href)))) {
+      link.setAttribute('aria-current', 'page');
+    }
+  });
+
+  // Keyboard accessibility for YARA dropdown
+  yaraButton?.addEventListener('click', (e) => {
+    const isExpanded = yaraButton.getAttribute('aria-expanded') === 'true';
+    yaraButton.setAttribute('aria-expanded', String(!isExpanded));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      yaraButton?.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Close mobile menu on nav link click
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      toggle?.setAttribute('aria-expanded', 'false');
+      menu?.setAttribute('aria-hidden', 'true');
+    });
+  });
+
+  // Theme toggle listener (Cold Laboratory Blueprint <-> Dark)
+  const themeToggle = document.getElementById('theme-toggle');
+  themeToggle?.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+    const nextTheme = isDark ? 'light' : 'dark';
+
+    document.documentElement.setAttribute('data-theme', nextTheme);
+    if (nextTheme === 'light') {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    }
+
+    try {
+      localStorage.setItem('yara-theme', nextTheme);
+    } catch (e) {}
+  });
+</script>

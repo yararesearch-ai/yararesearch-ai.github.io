@@ -1,0 +1,256 @@
+---
+// src/pages/research/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { RESEARCH_PROGRAMMES, RESEARCH_PROJECTS } from '../../data/research';
+import ResearchAtlas from '../../components/visualisations/ResearchAtlas';
+
+const STATUS_LABELS: Record<string, string> = {
+  proposed: 'Proposed', active: 'Active', 'in-review': 'In Review',
+  published: 'Published', completed: 'Completed', archived: 'Archived',
+};
+---
+
+<BaseLayout
+  title="Research | YARA Research"
+  description="YARA Research investigates the foundations and future of intelligent systems through six research programmes and an independent, reproducible research methodology."
+>
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <span class="research-id">Research Overview</span>
+        <h1 class="page-title">The Research Agenda.</h1>
+        <p class="page-subtitle">
+          Six research programmes investigating the architecture of intelligent systems:
+          from reasoning and language models to agentic AI, software engineering,
+          local inference, knowledge systems and AI safety.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Research Atlas -->
+  <section class="page-section page-section--atlas" aria-labelledby="atlas-heading">
+    <div class="container">
+      <ResearchAtlas client:load />
+    </div>
+  </section>
+
+  <!-- Programmes -->
+  <section class="page-section" aria-labelledby="programmes-h">
+    <div class="container">
+      <h2 id="programmes-h" class="section-title">Research Programmes</h2>
+      <div class="programmes-list">
+        {RESEARCH_PROGRAMMES.map((prog) => (
+          <a href={`/research/programmes/${prog.slug}`} class="programme-row">
+            <span class="prog-id">{prog.id}</span>
+            <span class="prog-title">{prog.title}</span>
+            <span class="prog-desc">{prog.description.substring(0, 100)}…</span>
+            <span class="prog-status status-active">{prog.status}</span>
+            <span class="prog-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section class="page-section page-section--alt" aria-labelledby="projects-h">
+    <div class="container">
+      <h2 id="projects-h" class="section-title">Research Projects</h2>
+      <div class="projects-list">
+        {RESEARCH_PROJECTS.map((proj) => (
+          <a href={`/research/projects/${proj.slug}`} class="project-row">
+            <span class="proj-id">{proj.id}</span>
+            <div class="proj-info">
+              <span class="proj-title">{proj.title}</span>
+              <span class="proj-sub">{proj.subtitle}</span>
+            </div>
+            <span class={`status-badge status-${proj.status}`}>{STATUS_LABELS[proj.status]}</span>
+            <span class="proj-arrow">→</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--nav-height) + 4rem);
+    padding-bottom: 4rem;
+    background: var(--color-graphite);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 54ch;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+  }
+
+  .page-subtitle {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .page-section {
+    padding-block: 4rem;
+    background: var(--color-graphite);
+  }
+
+  .page-section--alt {
+    background: var(--color-midnight-navy);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .section-title {
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+    margin-bottom: 2rem;
+  }
+
+  /* Programme list */
+  .programmes-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .programme-row {
+    display: grid;
+    grid-template-columns: 3rem 14rem 1fr auto auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .programme-row:last-child { border-bottom: none; }
+  .programme-row:hover { background: var(--color-elevated); }
+
+  .prog-id {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--color-electric-blue);
+  }
+
+  .prog-title {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .prog-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .prog-status {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid rgba(91,156,255,0.25);
+    border-radius: 2px;
+    color: var(--color-electric-blue);
+    background: rgba(91,156,255,0.06);
+    white-space: nowrap;
+  }
+
+  .prog-arrow, .proj-arrow {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    transition: transform 0.2s, color 0.2s;
+  }
+
+  .programme-row:hover .prog-arrow,
+  .project-row:hover .proj-arrow {
+    transform: translateX(4px);
+    color: var(--color-electric-blue);
+  }
+
+  /* Projects list */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .project-row {
+    display: grid;
+    grid-template-columns: 4rem 1fr auto auto;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .project-row:last-child { border-bottom: none; }
+  .project-row:hover { background: var(--color-elevated); }
+
+  .proj-id {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-electric-blue);
+  }
+
+  .proj-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .proj-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .proj-sub {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    .programme-row {
+      grid-template-columns: 3rem 1fr auto;
+    }
+    .prog-desc { display: none; }
+
+    .project-row {
+      grid-template-columns: 3rem 1fr auto;
+    }
+  }
+</style>

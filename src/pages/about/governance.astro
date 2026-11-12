@@ -1,0 +1,339 @@
+---
+// src/pages/about/governance.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Governance | YARA Research"
+  description="YARA Research governance model, roles, research lifecycle and policies."
+>
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/about">About</a>
+        <span>→</span>
+        <span>Governance</span>
+      </div>
+      <div class="page-hero-inner">
+        <span class="research-id">Governance</span>
+        <h1 class="page-title">Lightweight governance that can grow.</h1>
+        <p class="page-subtitle">
+          YARA Research operates a founder-led governance model designed for
+          a small independent research initiative, with the capacity to grow into
+          a more formal structure as the organisation matures.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="page-section" aria-label="Governance details">
+    <div class="container">
+      <div class="governance-layout">
+        <!-- Roles -->
+        <div class="gov-block">
+          <h2 class="gov-block-title">Roles & Responsibilities</h2>
+          <div class="roles-table">
+            {[
+              { role: 'Founder / Research Director', resp: 'Strategy, research agenda, final decisions', status: 'Active' },
+              { role: 'Programme Lead', resp: 'Research ownership within a programme', status: 'Founder initially' },
+              { role: 'Research Fellow', resp: 'Experiments and research papers', status: 'Future volunteers' },
+              { role: 'Reviewer', resp: 'Independent technical review', status: 'External collaborators' },
+              { role: 'Engineering Contributor', resp: 'Code and research infrastructure', status: 'Open source community' },
+              { role: 'Research Operations', resp: 'Documentation and publishing', status: 'Founder initially' },
+            ].map(({ role, resp, status }) => (
+              <div class="role-row">
+                <span class="role-name">{role}</span>
+                <span class="role-resp">{resp}</span>
+                <span class="role-status">{status}</span>
+              </div>
+            ))}
+          </div>
+          <p class="gov-note">
+            Honorary positions will not be created to make the organisation appear larger.
+            Every role represents genuine responsibility.
+          </p>
+        </div>
+
+        <!-- Policies planned -->
+        <div class="gov-block">
+          <h2 class="gov-block-title">Governance Policies</h2>
+          <p class="gov-subtext">
+            The following policies are in development and will be published before
+            external contributors are accepted.
+          </p>
+          <div class="policies-list">
+            {[
+              { policy: 'Research Ethics Policy', purpose: 'Integrity and responsible experimentation', status: 'Planned' },
+              { policy: 'Research Publication Policy', purpose: 'Authorship, peer review and publication', status: 'Planned' },
+              { policy: 'Open-source Policy', purpose: 'Code licensing and contribution', status: 'Planned' },
+              { policy: 'IP Ownership Policy', purpose: 'Ownership of research outputs', status: 'Planned' },
+              { policy: 'Conflict of Interest Policy', purpose: 'Employer, commercial and funding conflicts', status: 'Planned' },
+              { policy: 'Data Governance Policy', purpose: 'Data sources, privacy and retention', status: 'Planned' },
+              { policy: 'AI Usage Policy', purpose: 'Disclosure of AI-assisted research', status: 'Planned' },
+              { policy: 'Security & Disclosure Policy', purpose: 'Vulnerability reporting and sensitive findings', status: 'Planned' },
+              { policy: 'Contributor Agreement', purpose: 'Attribution, licences and participation', status: 'Planned' },
+            ].map(({ policy, purpose, status }) => (
+              <div class="policy-row">
+                <div class="policy-info">
+                  <span class="policy-name">{policy}</span>
+                  <span class="policy-purpose">{purpose}</span>
+                </div>
+                <span class="policy-status">{status}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Authorship standards -->
+        <div class="gov-block">
+          <h2 class="gov-block-title">Authorship Standards</h2>
+          <div class="standards-list">
+            {[
+              'Authorship must reflect meaningful intellectual or technical contribution.',
+              'Reviewers do not automatically become authors.',
+              'AI tools must not be represented as human authors.',
+              'AI-assisted writing and experimentation should be disclosed when material.',
+              'All authors must approve the submitted version.',
+              'Negative findings and limitations must not be hidden.',
+              'Corrections should be issued transparently.',
+            ].map((std, i) => (
+              <div class="standard-row">
+                <span class="std-num">{String(i+1).padStart(2,'0')}</span>
+                <span class="std-text">{std}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--nav-height) + 3rem);
+    padding-bottom: 3.5rem;
+    background: var(--color-graphite);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover { color: var(--color-text-secondary); }
+
+  .page-hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 54ch;
+  }
+
+  .page-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .page-section {
+    padding-block: 4rem;
+    background: var(--color-graphite);
+  }
+
+  .governance-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    max-width: 72rem;
+  }
+
+  .gov-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .gov-block-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--color-text-primary);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .gov-subtext {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    max-width: 54ch;
+  }
+
+  .gov-note {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    padding: 0.875rem 1rem;
+    border-left: 2px solid var(--color-border);
+    background: rgba(255,255,255,0.015);
+    border-radius: 0 2px 2px 0;
+    max-width: 54ch;
+    font-style: italic;
+  }
+
+  /* Roles table */
+  .roles-table {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 72rem;
+  }
+
+  .role-row {
+    display: grid;
+    grid-template-columns: 14rem 1fr 12rem;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .role-row:last-child { border-bottom: none; }
+
+  .role-name {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .role-resp {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  .role-status {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  /* Policies */
+  .policies-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 64rem;
+  }
+
+  .policy-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1rem 1.5rem;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .policy-row:last-child { border-bottom: none; }
+
+  .policy-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .policy-name {
+    font-family: var(--font-display);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .policy-purpose {
+    font-size: 0.8125rem;
+    color: var(--color-text-secondary);
+  }
+
+  .policy-status {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  /* Standards */
+  .standards-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 54ch;
+  }
+
+  .standard-row {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.875rem 1.25rem;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .standard-row:last-child { border-bottom: none; }
+
+  .std-num {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: var(--color-electric-blue);
+    flex-shrink: 0;
+  }
+
+  .std-text {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--color-text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .role-row {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+</style>

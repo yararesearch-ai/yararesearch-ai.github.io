@@ -1,0 +1,477 @@
+---
+// src/pages/contact.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact | YARA Research"
+  description="Direct communication channels for researchers, institutional partners, press, and open-source contributors at YARA Research."
+>
+  <div class="page-hero">
+    <div class="container">
+      <div class="page-hero-inner">
+        <span class="research-id">Communication Channels</span>
+        <h1 class="page-title">Direct communication.</h1>
+        <p class="page-subtitle">
+          Reach the right contact at YARA Research. Dedicated channels for research
+          collaborations, fellowship inquiries, open-source engineering, and institutional partnerships.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="page-section" aria-label="Contact channels">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- Inbound Channels Grid -->
+        <div class="channels-section">
+          <h2 class="section-heading">Directory of Inquiries</h2>
+          <div class="channels-grid">
+            
+            <!-- Channel 1: Research & Fellowships -->
+            <div class="channel-card">
+              <div class="channel-header">
+                <span class="channel-tag">Research · Fellowships</span>
+                <span class="channel-status">Direct Inbox</span>
+              </div>
+              <h3 class="channel-title">Research &amp; Fellowships</h3>
+              <p class="channel-desc">
+                Proposing joint research agendas, applying for independent fellowships, contributing to technical peer reviews, or inquiring about active working papers.
+              </p>
+              <div class="channel-action">
+                <a href="mailto:founder@yararesearch.com?subject=Research%20Collaboration%20Inquiry" class="email-link">
+                  founder@yararesearch.com
+                </a>
+                <button
+                  type="button"
+                  class="copy-btn"
+                  data-copy="founder@yararesearch.com"
+                  aria-label="Copy research email address"
+                >
+                  <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span class="copy-label">Copy</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Channel 2: General & Institutional -->
+            <div class="channel-card">
+              <div class="channel-header">
+                <span class="channel-tag">Institutional · Press</span>
+                <span class="channel-status">Direct Inbox</span>
+              </div>
+              <h3 class="channel-title">General &amp; Partnerships</h3>
+              <p class="channel-desc">
+                Institutional collaborations, computing grant discussions, speaking engagements, media or press inquiries, and general correspondence.
+              </p>
+              <div class="channel-action">
+                <a href="mailto:founder@yararesearch.com?subject=General%20Inquiry" class="email-link">
+                  founder@yararesearch.com
+                </a>
+                <button
+                  type="button"
+                  class="copy-btn"
+                  data-copy="founder@yararesearch.com"
+                  aria-label="Copy general email address"
+                >
+                  <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                  <span class="copy-label">Copy</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Channel 3: Open Source & Engineering -->
+            <div class="channel-card">
+              <div class="channel-header">
+                <span class="channel-tag">Open Source · Code</span>
+                <span class="channel-status">Public Community</span>
+              </div>
+              <h3 class="channel-title">Open-Source &amp; Systems</h3>
+              <p class="channel-desc">
+                Architecture feedback, bug reports, runtime optimization proposals, benchmark evaluations, and reproducible code discussions.
+              </p>
+              <div class="channel-action">
+                <a
+                  href="https://github.com/yararesearch-ai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="ext-channel-link"
+                >
+                  <span>github.com/yararesearch-ai</span>
+                  <span class="arrow" aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Guidance Banner -->
+        <div class="guidance-banner">
+          <div class="guidance-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+          </div>
+          <div class="guidance-content">
+            <h3 class="guidance-title">Notes on Research Proposals</h3>
+            <p>
+              YARA Research is dedicated to open science and reproducible methods. When submitting research
+              proposals or co-authorship inquiries, please include:
+            </p>
+            <ul class="guidance-list">
+              <li>Relevant prior work or working papers (arXiv, GitHub, or PDF links)</li>
+              <li>A succinct experimental hypothesis directly addressing our <a href="/research/programmes" class="text-link">Research Programmes</a></li>
+              <li>Target timelines and compute/data requirements if applicable</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Coordinates & Global Presence -->
+        <div class="coordinates-block">
+          <div class="coord-col">
+            <h4 class="coord-label">Initiative Location</h4>
+            <p class="coord-val">India · Global Distributed Collaboration</p>
+          </div>
+          <div class="coord-col">
+            <h4 class="coord-label">Response Expectation</h4>
+            <p class="coord-val">We review all incoming inquiries. Research proposals receive response within 3 to 5 business days.</p>
+          </div>
+          <div class="coord-col">
+            <h4 class="coord-label">Public Profiles</h4>
+            <p class="coord-links">
+              <a href="https://github.com/yararesearch-ai" target="_blank" rel="noopener noreferrer" class="coord-link">GitHub ↗</a>
+              <span class="coord-sep">·</span>
+              <a href="https://www.linkedin.com/company/135265392/" target="_blank" rel="noopener noreferrer" class="coord-link">LinkedIn ↗</a>
+              <span class="coord-sep">·</span>
+              <a href="/llms.txt" class="coord-link">llms.txt ↗</a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Simple, resilient copy-to-clipboard handler
+  document.querySelectorAll<HTMLButtonElement>('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const textToCopy = btn.getAttribute('data-copy');
+      if (!textToCopy) return;
+
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        const label = btn.querySelector('.copy-label');
+        if (label) {
+          const originalText = label.textContent;
+          label.textContent = 'Copied';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            label.textContent = originalText;
+            btn.classList.remove('copied');
+          }, 2000);
+        }
+      } catch (err) {
+        // Fallback: select mailto link directly
+        const parent = btn.closest('.channel-action');
+        const mailLink = parent?.querySelector<HTMLAnchorElement>('.email-link');
+        if (mailLink) mailLink.click();
+      }
+    });
+  });
+</script>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--nav-height) + 4rem);
+    padding-bottom: 3.5rem;
+    background: var(--color-space-black);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .page-hero-inner {
+    max-width: 48rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .research-id {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-electric-blue);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+  }
+
+  .page-subtitle {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .page-section {
+    padding-block: 4rem 6rem;
+    background: var(--color-graphite);
+  }
+
+  .contact-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    max-width: 58rem;
+  }
+
+  .section-heading {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.015em;
+  }
+
+  .channels-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .channel-card {
+    padding: 1.75rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .channel-card:hover {
+    border-color: rgba(91, 156, 255, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .channel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .channel-tag {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--color-electric-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .channel-status {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+  }
+
+  .channel-title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .channel-desc {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    flex-grow: 1;
+  }
+
+  .channel-action {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .email-link {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex-grow: 1;
+    transition: color 0.15s ease;
+  }
+
+  .email-link:hover {
+    color: var(--color-electric-blue);
+  }
+
+  .ext-channel-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .ext-channel-link:hover {
+    color: var(--color-electric-blue);
+  }
+
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.3rem 0.55rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .copy-btn:hover {
+    background: rgba(91, 156, 255, 0.08);
+    border-color: rgba(91, 156, 255, 0.3);
+    color: var(--color-text-primary);
+  }
+
+  .copy-btn.copied {
+    background: rgba(86, 217, 232, 0.12);
+    border-color: var(--color-cyan-glow);
+    color: var(--color-cyan-glow);
+  }
+
+  /* Guidance Banner */
+  .guidance-banner {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    background: rgba(91, 156, 255, 0.04);
+    border: 1px solid rgba(91, 156, 255, 0.25);
+    border-radius: 4px;
+  }
+
+  .guidance-icon {
+    color: var(--color-electric-blue);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .guidance-title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .guidance-content p {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.75rem;
+  }
+
+  .guidance-list {
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .text-link {
+    color: var(--color-electric-blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Coordinates */
+  .coordinates-block {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .coord-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .coord-val {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+  }
+
+  .coord-links {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+  }
+
+  .coord-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  .coord-link:hover {
+    color: var(--color-electric-blue);
+  }
+
+  .coord-sep {
+    color: var(--color-text-muted);
+    margin-inline: 0.35rem;
+  }
+
+  @media (max-width: 860px) {
+    .channels-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .coordinates-block {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

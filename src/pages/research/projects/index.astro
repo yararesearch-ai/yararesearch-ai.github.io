@@ -1,0 +1,268 @@
+---
+// src/pages/research/projects/index.astro
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { RESEARCH_PROJECTS, RESEARCH_PROGRAMMES } from '../../../data/research';
+
+const STATUS_LABELS: Record<string, string> = {
+  proposed: 'Proposed',
+  active: 'Active',
+  'in-review': 'In Review',
+  published: 'Published',
+  completed: 'Completed',
+  archived: 'Archived',
+};
+---
+
+<BaseLayout
+  title="Research Projects | YARA Research"
+  description="Flagship and exploratory research initiatives at YARA Research across agentic systems, AI runtimes, and local intelligence."
+>
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/research">Research</a>
+        <span>→</span>
+        <span>Projects</span>
+      </div>
+      <div class="page-hero-inner">
+        <span class="research-id">Research Portfolio</span>
+        <h1 class="page-title">Flagship Research Projects</h1>
+        <p class="page-subtitle">
+          Investigating fundamental questions across agentic systems, modular runtimes,
+          and resource-efficient local intelligence. All projects adhere to our
+          principles of reproducible experimentation and transparent reporting.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="page-section" aria-label="Research projects list">
+    <div class="container">
+      <div class="projects-grid">
+        {RESEARCH_PROJECTS.map((project) => {
+          const programme = RESEARCH_PROGRAMMES.find((p) => p.id === project.programme);
+          return (
+            <article class="project-card">
+              <div class="card-meta">
+                <span class="project-id">{project.id}</span>
+                <span class={`status-badge status-${project.status}`}>
+                  {STATUS_LABELS[project.status]}
+                </span>
+                {programme && (
+                  <span class="programme-tag">
+                    {programme.shortTitle}
+                  </span>
+                )}
+              </div>
+
+              <div class="card-content">
+                <h2 class="project-title">
+                  <a href={`/research/projects/${project.slug}`}>
+                    {project.title}
+                  </a>
+                </h2>
+                <p class="project-subtitle">{project.subtitle}</p>
+                <p class="project-desc">{project.description}</p>
+              </div>
+
+              {project.researchQuestions.length > 0 && (
+                <div class="questions-box">
+                  <span class="questions-label">Key Investigation:</span>
+                  <p class="question-sample">"{project.researchQuestions[0]}"</p>
+                </div>
+              )}
+
+              <div class="card-footer">
+                <a href={`/research/projects/${project.slug}`} class="project-link">
+                  View Research Brief &amp; Methodology →
+                </a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--nav-height) + 4rem);
+    padding-bottom: 4rem;
+    background: var(--color-graphite);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-text-secondary);
+  }
+
+  .page-hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 58ch;
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .page-section {
+    padding-block: 4rem 6rem;
+    background: var(--color-graphite);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 58rem;
+  }
+
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 2.25rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .project-card:hover {
+    border-color: rgba(91, 156, 255, 0.3);
+    background: var(--color-elevated);
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .project-id {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--color-electric-blue);
+  }
+
+  .programme-tag {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .project-title {
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.015em;
+  }
+
+  .project-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .project-title a:hover {
+    color: var(--color-electric-blue);
+  }
+
+  .project-subtitle {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
+  .project-desc {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+    margin-top: 0.5rem;
+  }
+
+  .questions-box {
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 2px solid rgba(91, 156, 255, 0.4);
+    border-radius: 0 3px 3px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .questions-label {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .question-sample {
+    font-size: 0.875rem;
+    color: var(--color-text-primary);
+    font-style: italic;
+  }
+
+  .card-footer {
+    padding-top: 0.5rem;
+  }
+
+  .project-link {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-electric-blue);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .project-link:hover {
+    opacity: 0.85;
+  }
+</style>

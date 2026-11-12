@@ -1,0 +1,65 @@
+---
+// src/components/shared/SEOHead.astro
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  article?: boolean;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description,
+  image = '/images/og-default.svg',
+  article = false,
+  noIndex = false,
+} = Astro.props;
+
+const siteUrl = 'https://yararesearch.com';
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const imageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+{noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+<!-- Open Graph -->
+<meta property="og:type" content={article ? 'article' : 'website'} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:site_name" content="YARA Research" />
+
+<!-- Twitter/X Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<!-- Research metadata -->
+<meta name="theme-color" content="#090B10" />
+<meta name="color-scheme" content="dark" />
+
+<!-- Schema.org -->
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ResearchOrganization",
+    "name": "YARA Research",
+    "description": "Independent AI Research & Engineering",
+    "url": "https://yararesearch.com",
+    "logo": "https://yararesearch.com/logos/yara-research.svg",
+    "foundingDate": "2026",
+    "knowsAbout": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Agentic Systems",
+      "AI Engineering",
+      "Local AI"
+    ]
+  }
+</script>

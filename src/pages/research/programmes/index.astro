@@ -1,0 +1,183 @@
+---
+// src/pages/research/programmes/index.astro
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { RESEARCH_PROGRAMMES } from '../../../data/research';
+---
+
+<BaseLayout
+  title="Research Programmes | YARA Research"
+  description="YARA Research operates six research programmes investigating the full spectrum of intelligent systems."
+>
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="/research">Research</a>
+        <span>→</span>
+        <span>Programmes</span>
+      </div>
+      <div class="page-hero-inner">
+        <span class="research-id">Research Programmes</span>
+        <h1 class="page-title">Six research directions. One mission.</h1>
+        <p class="page-subtitle">
+          YARA Research investigates AI through six interlocking programmes,
+          each exploring a distinct dimension of intelligent systems, from
+          reasoning and architecture to safety and governance.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="page-section" aria-label="All research programmes">
+    <div class="container">
+      <div class="prog-grid">
+        {RESEARCH_PROGRAMMES.map((prog) => (
+          <a href={`/research/programmes/${prog.slug}`} class="prog-card">
+            <div class="prog-card-header">
+              <span class="prog-card-id">{prog.id}</span>
+              <span class="prog-card-status status-badge status-active">{prog.status}</span>
+            </div>
+            <h2 class="prog-card-title">{prog.title}</h2>
+            <p class="prog-card-desc">{prog.description}</p>
+            <div class="prog-card-areas">
+              {prog.researchAreas.slice(0, 3).map((area) => (
+                <span class="prog-card-area">{area}</span>
+              ))}
+            </div>
+            <span class="prog-card-link">Explore programme →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding-top: calc(var(--nav-height) + 4rem);
+    padding-bottom: 4rem;
+    background: var(--color-graphite);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover { color: var(--color-text-secondary); }
+
+  .page-hero-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 54ch;
+  }
+
+  .page-title {
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--color-text-primary);
+    line-height: 1.1;
+  }
+
+  .page-subtitle {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .page-section {
+    padding-block: 4rem;
+    background: var(--color-graphite);
+  }
+
+  .prog-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--color-border);
+  }
+
+  .prog-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    background: var(--color-surface);
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .prog-card:hover { background: var(--color-elevated); }
+
+  .prog-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .prog-card-id {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-electric-blue);
+  }
+
+  .prog-card-title {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+
+  .prog-card-desc {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    flex: 1;
+  }
+
+  .prog-card-areas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+  }
+
+  .prog-card-area {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 2px;
+  }
+
+  .prog-card-link {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-electric-blue);
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 768px) {
+    .prog-grid { grid-template-columns: 1fr; }
+  }
+</style>

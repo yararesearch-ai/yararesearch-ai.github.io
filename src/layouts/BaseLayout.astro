@@ -1,0 +1,81 @@
+---
+// src/layouts/BaseLayout.astro
+// Primary layout for all YARA Research pages
+import '../styles/global.css';
+import Navigation from '../components/navigation/Navigation.astro';
+import Footer from '../components/layout/Footer.astro';
+import SEOHead from '../components/shared/SEOHead.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  article?: boolean;
+  noIndex?: boolean;
+}
+
+const {
+  title = 'YARA Research | The Intelligence Frontier',
+  description = 'YARA Research is an independent AI research and engineering organisation exploring the foundations, architectures and emerging possibilities of intelligent systems.',
+  image = '/images/og-default.png',
+  article = false,
+  noIndex = false,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <SEOHead
+      title={title}
+      description={description}
+      image={image}
+      article={article}
+      noIndex={noIndex}
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <script is:inline>
+      (function() {
+        try {
+          const stored = localStorage.getItem('yara-theme');
+          const theme = stored || 'dark';
+          document.documentElement.setAttribute('data-theme', theme);
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('light');
+          } else {
+            document.documentElement.classList.add('light');
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-graphite text-primary-text antialiased">
+    <div class="scroll-progress-bar" id="scroll-progress-indicator" aria-hidden="true"></div>
+    <Navigation />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+
+    <script is:inline>
+      // Fallback for browsers without CSS animation-timeline support
+      if (!('animationTimeline' in document.documentElement.style)) {
+        var bar = document.getElementById('scroll-progress-indicator');
+        if (bar) {
+          window.addEventListener('scroll', function() {
+            var h = document.documentElement.scrollHeight - window.innerHeight;
+            if (h > 0) {
+              bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, window.scrollY / h)) + ')';
+            }
+          }, { passive: true });
+        }
+      }
+    </script>
+  </body>
+</html>
