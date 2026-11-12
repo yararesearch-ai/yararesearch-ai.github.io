@@ -1,4 +1,4 @@
-# YARA Research — The Intelligence Frontier
+# YARA Research - The Intelligence Frontier
 
 > **Independent AI Research & Engineering**  
 > *Exploring the foundations and future of intelligent systems.*  

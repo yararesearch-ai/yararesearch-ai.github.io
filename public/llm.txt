@@ -1,4 +1,4 @@
-# YARA Research — The Intelligence Frontier
+# YARA Research - The Intelligence Frontier
 
 > YARA Research is an independent AI research and engineering laboratory originating in India with a global research outlook. We investigate the foundations, architectures, and emerging possibilities of intelligent systems through rigorous experimentation, open-source engineering, and reproducible science.
 
