@@ -164,3 +164,111 @@ export function easeOutQuart(t: number): number {
   const x = clamp01(t);
   return 1 - Math.pow(1 - x, 4);
 }
+
+export type LogoPaletteName = 'brand' | 'teal';
+export type LogoThemeMode = 'dark' | 'light';
+
+export interface LogoPalette {
+  nodeColor: string;
+  nodeEmissive: string;
+  nodeCore: string;
+  nodeHalo: string;
+  perimeterColor: string;
+  perimeterEmissive: string;
+  perimeterCore: string;
+  backEdgeColor: string;
+  backEdgeEmissive: string;
+  frontCoreColor: string;
+  yColor: string;
+  yEmissive: string;
+  yAttenuation: string;
+  yRidge: string;
+  pulseColor: string;
+  lightKey: string;
+  lightRim: string;
+  lightTopRim: string;
+  lightCenter: string;
+  ambientLight: string;
+  ambientIntensity: number;
+}
+
+const BRAND_DARK_PALETTE: LogoPalette = {
+  nodeColor: '#56D9E8',
+  nodeEmissive: '#0284C7',
+  nodeCore: '#E0F9FF',
+  nodeHalo: '#56D9E8',
+  perimeterColor: '#5B9CFF',
+  perimeterEmissive: '#2563EB',
+  perimeterCore: '#BAE6FD',
+  backEdgeColor: '#6366F1',
+  backEdgeEmissive: '#312E81',
+  frontCoreColor: '#7DD3FC',
+  yColor: '#5B9CFF',
+  yEmissive: '#2B6BE6',
+  yAttenuation: '#1E40AF',
+  yRidge: '#BAE6FD',
+  pulseColor: '#E0F9FF',
+  lightKey: '#F0F7FF',
+  lightRim: '#56D9E8',
+  lightTopRim: '#8B83FF',
+  lightCenter: '#5B9CFF',
+  ambientLight: '#0F1C3A',
+  ambientIntensity: 0.7,
+};
+
+const BRAND_LIGHT_PALETTE: LogoPalette = {
+  nodeColor: '#0284C7',
+  nodeEmissive: '#0369A1',
+  nodeCore: '#BAE6FD',
+  nodeHalo: '#0284C7',
+  perimeterColor: '#1D4ED8',
+  perimeterEmissive: '#1E3A8A',
+  perimeterCore: '#60A5FA',
+  backEdgeColor: '#334155',
+  backEdgeEmissive: '#1E293B',
+  frontCoreColor: '#38BDF8',
+  yColor: '#1D4ED8',
+  yEmissive: '#1E40AF',
+  yAttenuation: '#172554',
+  yRidge: '#60A5FA',
+  pulseColor: '#38BDF8',
+  lightKey: '#FFFFFF',
+  lightRim: '#0284C7',
+  lightTopRim: '#4F46E5',
+  lightCenter: '#38BDF8',
+  ambientLight: '#CBD5E1',
+  ambientIntensity: 0.95,
+};
+
+const TEAL_PALETTE: LogoPalette = {
+  nodeColor: '#00C99B',
+  nodeEmissive: '#008F6E',
+  nodeCore: '#B8FFF0',
+  nodeHalo: '#00E5A3',
+  perimeterColor: '#00D8A4',
+  perimeterEmissive: '#008264',
+  perimeterCore: '#9CFFEE',
+  backEdgeColor: '#008F72',
+  backEdgeEmissive: '#005E4C',
+  frontCoreColor: '#66FFD9',
+  yColor: '#00E5A3',
+  yEmissive: '#00B98F',
+  yAttenuation: '#007D66',
+  yRidge: '#B8FFF0',
+  pulseColor: '#D8FFF7',
+  lightKey: '#E6FFF9',
+  lightRim: '#00C996',
+  lightTopRim: '#B8FFF0',
+  lightCenter: '#00E5A3',
+  ambientLight: '#0D3B31',
+  ambientIntensity: 0.65,
+};
+
+export function getLogoPalette(
+  name: LogoPaletteName,
+  theme: LogoThemeMode
+): LogoPalette {
+  if (name === 'teal') return TEAL_PALETTE;
+  return theme === 'light' ? BRAND_LIGHT_PALETTE : BRAND_DARK_PALETTE;
+}
+

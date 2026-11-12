@@ -15,6 +15,7 @@ import ConnectionNodes from './ConnectionNodes';
 import LogoLighting from './LogoLighting';
 import LogoAnimation from './LogoAnimation';
 import LogoCamera from './LogoCamera';
+import type { LogoPalette } from './cubeMath';
 import type {
   LogoAnimationState,
   LogoMode,
@@ -24,6 +25,7 @@ import type {
 export interface YaraLogoSceneProps {
   animRef: React.MutableRefObject<LogoAnimationState>;
   mode: LogoMode;
+  palette: LogoPalette;
   autoPlay: boolean;
   interactive: boolean;
   inspectEnabled: boolean;
@@ -66,6 +68,7 @@ function SceneLifecycleHelper({
 export default function YaraLogoScene({
   animRef,
   mode,
+  palette,
   autoPlay,
   interactive,
   inspectEnabled,
@@ -81,7 +84,9 @@ export default function YaraLogoScene({
   onReady,
 }: YaraLogoSceneProps) {
   const isMinimal = mode === 'minimal';
-  const usePostProcessing = enablePostProcessing && !isMinimal && !isMobile;
+  const isTransparent = background === 'transparent';
+  const usePostProcessing =
+    enablePostProcessing && !isMinimal && !isMobile && !isTransparent;
 
   // Pause continuous rendering when offscreen, paused, reduced-motion, or minimal static mode
   const continuousLoop =
@@ -97,7 +102,7 @@ export default function YaraLogoScene({
       camera={{ fov: 28, near: 0.1, far: 100, position: [0, 0, 11.2] }}
       gl={{
         antialias: true,
-        alpha: false,
+        alpha: isTransparent,
         powerPreference: 'high-performance',
         localClippingEnabled: true,
         toneMapping: THREE.ACESFilmicToneMapping,
@@ -118,7 +123,7 @@ export default function YaraLogoScene({
         animRef.current.hoveredNodeIndex = null;
       }}
     >
-      <color attach="background" args={[background]} />
+      {!isTransparent && <color attach="background" args={[background]} />}
 
       <SceneLifecycleHelper
         mode={mode}
@@ -127,13 +132,13 @@ export default function YaraLogoScene({
         onReady={onReady}
       />
 
-      {/* Procedural dark-lab studio reflections (zero external HDRI requests) */}
+      {/* Procedural lab studio reflections (zero external HDRI requests) */}
       {!isMinimal && (
         <Environment resolution={128} frames={1}>
           <Lightformer
             form="rect"
             intensity={2.4}
-            color="#eafffa"
+            color={palette.lightKey}
             scale={[6, 2.5, 1]}
             position={[-4, 4, 4]}
             target={[0, 0, 0]}
@@ -141,7 +146,7 @@ export default function YaraLogoScene({
           <Lightformer
             form="rect"
             intensity={1.6}
-            color="#00e5a3"
+            color={palette.lightRim}
             scale={[5, 4, 1]}
             position={[5, -1, 2]}
             target={[0, 0, 0]}
@@ -149,7 +154,7 @@ export default function YaraLogoScene({
           <Lightformer
             form="ring"
             intensity={1.1}
-            color="#b8fff0"
+            color={palette.lightTopRim}
             scale={3}
             position={[0, 5, -4]}
             target={[0, 0, 0]}
@@ -170,6 +175,8 @@ export default function YaraLogoScene({
         animRef={animRef}
         mode={mode}
         minimal={isMinimal}
+        palette={palette}
+        transparentBg={isTransparent}
         reducedMotion={reducedMotion}
       />
 
@@ -187,18 +194,24 @@ export default function YaraLogoScene({
           animRef={animRef}
           mode={mode}
           minimal={isMinimal}
+          palette={palette}
+          transparentBg={isTransparent}
           reducedMotion={reducedMotion}
         />
         <YGeometry
           animRef={animRef}
           mode={mode}
           minimal={isMinimal}
+          palette={palette}
+          transparentBg={isTransparent}
           reducedMotion={reducedMotion}
         />
         <ConnectionNodes
           animRef={animRef}
           mode={mode}
           minimal={isMinimal}
+          palette={palette}
+          transparentBg={isTransparent}
           reducedMotion={reducedMotion}
         />
       </LogoAnimation>

@@ -8,6 +8,7 @@ import {
   createBeveledYArmGeometry,
   easeInOutCubic,
   easeOutCubic,
+  type LogoPalette,
 } from './cubeMath';
 import type { LogoAnimationState, LogoMode } from '../../hooks/useLogoAnimation';
 
@@ -15,6 +16,8 @@ interface YGeometryProps {
   animRef: React.MutableRefObject<LogoAnimationState>;
   mode: LogoMode;
   minimal: boolean;
+  palette: LogoPalette;
+  transparentBg?: boolean;
   reducedMotion: boolean;
 }
 
@@ -31,6 +34,8 @@ export default function YGeometry({
   animRef,
   mode,
   minimal,
+  palette,
+  transparentBg = false,
   reducedMotion,
 }: YGeometryProps) {
   const leftMeshRef = useRef<THREE.Mesh>(null);
@@ -154,7 +159,7 @@ export default function YGeometry({
       color: new THREE.Color('#B8FFF0'),
       transparent: true,
       opacity: 0.75,
-      blending: THREE.AdditiveBlending,
+      blending: transparentBg ? THREE.NormalBlending : THREE.AdditiveBlending,
       depthWrite: false,
       toneMapped: false,
     });
@@ -163,13 +168,26 @@ export default function YGeometry({
       color: new THREE.Color('#D8FFF7'),
       transparent: true,
       opacity: 0,
-      blending: THREE.AdditiveBlending,
+      blending: transparentBg ? THREE.NormalBlending : THREE.AdditiveBlending,
       depthWrite: false,
       toneMapped: false,
     });
 
     return { leftMat, rightMat, stemMat, ridgeMat, pulseMat };
-  }, [minimal, clipPlanes]);
+  }, [minimal, transparentBg, clipPlanes]);
+
+  useEffect(() => {
+    const arms = [materials.leftMat, materials.rightMat, materials.stemMat];
+    arms.forEach((m) => {
+      m.color.set(palette.yColor);
+      m.emissive.set(palette.yEmissive);
+      if (m instanceof THREE.MeshPhysicalMaterial) {
+        m.attenuationColor.set(palette.yAttenuation);
+      }
+    });
+    materials.ridgeMat.color.set(palette.yRidge);
+    materials.pulseMat.color.set(palette.pulseColor);
+  }, [palette, materials]);
 
   useEffect(() => {
     return () => {

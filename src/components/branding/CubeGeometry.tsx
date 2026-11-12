@@ -7,6 +7,7 @@ import {
   OUTER_VERTICES,
   clamp01,
   easeInOutCubic,
+  type LogoPalette,
 } from './cubeMath';
 import type { LogoAnimationState, LogoMode } from '../../hooks/useLogoAnimation';
 
@@ -14,6 +15,8 @@ interface CubeGeometryProps {
   animRef: React.MutableRefObject<LogoAnimationState>;
   mode: LogoMode;
   minimal: boolean;
+  palette: LogoPalette;
+  transparentBg?: boolean;
   reducedMotion: boolean;
 }
 
@@ -34,6 +37,8 @@ export default function CubeGeometry({
   animRef,
   mode,
   minimal,
+  palette,
+  transparentBg = false,
   reducedMotion,
 }: CubeGeometryProps) {
   const edgeGroupRefs = useRef<(THREE.Group | null)[]>([]);
@@ -119,13 +124,23 @@ export default function CubeGeometry({
       color: new THREE.Color('#B8FFF0'),
       transparent: true,
       opacity: 0,
-      blending: THREE.AdditiveBlending,
+      blending: transparentBg ? THREE.NormalBlending : THREE.AdditiveBlending,
       depthWrite: false,
       toneMapped: false,
     });
 
     return { perimeterOuter, perimeterCore, backEdge, frontCore, pulse };
-  }, [minimal]);
+  }, [minimal, transparentBg]);
+
+  useEffect(() => {
+    sharedMaterials.perimeterOuter.color.set(palette.perimeterColor);
+    sharedMaterials.perimeterOuter.emissive.set(palette.perimeterEmissive);
+    sharedMaterials.perimeterCore.color.set(palette.perimeterCore);
+    sharedMaterials.backEdge.color.set(palette.backEdgeColor);
+    sharedMaterials.backEdge.emissive.set(palette.backEdgeEmissive);
+    sharedMaterials.frontCore.color.set(palette.frontCoreColor);
+    sharedMaterials.pulse.color.set(palette.pulseColor);
+  }, [palette, sharedMaterials]);
 
   useEffect(() => {
     return () => {

@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import YaraLogo3D from './YaraLogo3D';
+import type { LogoPaletteName } from './cubeMath';
 import type { LogoMode, LogoPhase } from '../../hooks/useLogoAnimation';
 
 const PHASE_LABELS: Record<LogoPhase, { time: string; title: string }> = {
@@ -22,6 +23,7 @@ const MODES: { id: LogoMode; label: string; desc: string }[] = [
 
 export default function LogoPreviewStudio() {
   const [mode, setMode] = useState<LogoMode>('intro');
+  const [palette, setPalette] = useState<LogoPaletteName>('brand');
   const [phase, setPhase] = useState<LogoPhase>(1);
   const [showWordmark, setShowWordmark] = useState(true);
   const [enablePostProcessing, setEnablePostProcessing] = useState(true);
@@ -49,6 +51,7 @@ export default function LogoPreviewStudio() {
         <YaraLogo3D
           key={instanceKey}
           mode={mode}
+          palette={palette}
           autoPlay={true}
           interactive={true}
           showWordmark={showWordmark}
@@ -157,6 +160,16 @@ export default function LogoPreviewStudio() {
             <div className="font-mono text-xs uppercase tracking-wider text-white/60">
               Scene Options
             </div>
+
+            <label className="flex cursor-pointer items-center justify-between rounded-lg border border-white/10 px-3 py-2 text-xs">
+              <span>Website Brand Palette (Blue / Cyan)</span>
+              <input
+                type="checkbox"
+                checked={palette === 'brand'}
+                onChange={(e) => setPalette(e.target.checked ? 'brand' : 'teal')}
+                className="accent-[#5B9CFF]"
+              />
+            </label>
 
             <label className="flex cursor-pointer items-center justify-between rounded-lg border border-white/10 px-3 py-2 text-xs">
               <span>Show Wordmark</span>

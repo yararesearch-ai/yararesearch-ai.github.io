@@ -1,13 +1,15 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { easeOutCubic } from './cubeMath';
+import { easeOutCubic, type LogoPalette } from './cubeMath';
 import type { LogoAnimationState, LogoMode } from '../../hooks/useLogoAnimation';
 
 interface LogoLightingProps {
   animRef: React.MutableRefObject<LogoAnimationState>;
   mode: LogoMode;
   minimal: boolean;
+  palette: LogoPalette;
+  transparentBg?: boolean;
   reducedMotion: boolean;
 }
 
@@ -46,6 +48,8 @@ export default function LogoLighting({
   animRef,
   mode,
   minimal,
+  palette,
+  transparentBg = false,
   reducedMotion,
 }: LogoLightingProps) {
   const centerLightRef = useRef<THREE.PointLight>(null);
@@ -56,17 +60,18 @@ export default function LogoLighting({
 
   const glowAssets = useMemo(() => {
     const centerTex = createRadialGlowTexture(
-      'rgba(0, 229, 163, 0.34)',
-      'rgba(0, 185, 143, 0.11)'
+      'rgba(255, 255, 255, 0.34)',
+      'rgba(255, 255, 255, 0.11)'
     );
     const floorTex = createRadialGlowTexture(
-      'rgba(0, 229, 163, 0.38)',
-      'rgba(0, 185, 143, 0.10)'
+      'rgba(255, 255, 255, 0.38)',
+      'rgba(255, 255, 255, 0.10)'
     );
     const planeGeo = new THREE.PlaneGeometry(1, 1);
 
     const centerMat = new THREE.MeshBasicMaterial({
       map: centerTex,
+      color: new THREE.Color(palette.lightCenter),
       transparent: true,
       opacity: 0.25,
       blending: THREE.AdditiveBlending,
@@ -75,6 +80,7 @@ export default function LogoLighting({
 
     const floorMat = new THREE.MeshBasicMaterial({
       map: floorTex,
+      color: new THREE.Color(palette.lightCenter),
       transparent: true,
       opacity: 0.42,
       blending: THREE.AdditiveBlending,
@@ -83,6 +89,11 @@ export default function LogoLighting({
 
     return { centerTex, floorTex, planeGeo, centerMat, floorMat };
   }, []);
+
+  useEffect(() => {
+    glowAssets.centerMat.color.set(palette.lightCenter);
+    glowAssets.floorMat.color.set(palette.lightCenter);
+  }, [palette.lightCenter, glowAssets]);
 
   useEffect(() => {
     return () => {
@@ -143,70 +154,73 @@ export default function LogoLighting({
 
   return (
     <group name="yara-logo-lighting">
-      {/* Subtle deep-teal ambient base */}
-      <ambientLight color="#0d3b31" intensity={0.65} />
+      {/* Subtle theme-aware ambient base */}
+      <ambientLight color={palette.ambientLight} intensity={palette.ambientIntensity} />
 
       {/* Upper-left key light for crisp sphere highlights & bevel contrast */}
       <directionalLight
         position={[-4.5, 5.5, 6.5]}
-        color="#e6fff9"
+        color={palette.lightKey}
         intensity={minimal ? 2.2 : 2.6}
       />
 
-      {/* Right/rear teal rim light to sculpt the cube silhouette against #000000 */}
+      {/* Right/rear rim light to sculpt the cube silhouette */}
       <directionalLight
         position={[5.0, -1.5, -4.5]}
-        color="#00c996"
+        color={palette.lightRim}
         intensity={1.9}
       />
 
-      {/* Top-back mint rim highlight (omitted in minimal mode) */}
+      {/* Top-back rim highlight (omitted in minimal mode) */}
       {!minimal && (
         <directionalLight
           position={[0.5, 4.5, -5.5]}
-          color="#b8fff0"
+          color={palette.lightTopRim}
           intensity={1.15}
         />
       )}
 
-      {/* Central teal point light near the Y convergence hub */}
+      {/* Central point light near the Y convergence hub */}
       <pointLight
         ref={centerLightRef}
         position={[0, 0.05, 2.35]}
-        color="#00e5a3"
+        color={palette.lightCenter}
         intensity={2.6}
         distance={8}
         decay={1.8}
       />
 
-      {/* Soft radial center backdrop glow behind the cube */}
-      <mesh
-        ref={centerGlowRef}
-        position={[0, 0, -2.2]}
-        scale={[4.2, 4.2, 1]}
-        geometry={glowAssets.planeGeo}
-      >
-        <primitive
-          object={glowAssets.centerMat}
-          ref={centerGlowMatRef}
-          attach="material"
-        />
-      </mesh>
+      {/* Backdrop & floor radial glows (dark/opaque stages only — additive planes muddy transparent light themes) */}
+      {!transparentBg && (
+        <>
+          <mesh
+            ref={centerGlowRef}
+            position={[0, 0, -2.2]}
+            scale={[4.2, 4.2, 1]}
+            geometry={glowAssets.planeGeo}
+          >
+            <primitive
+              object={glowAssets.centerMat}
+              ref={centerGlowMatRef}
+              attach="material"
+            />
+          </mesh>
 
-      {/* Soft teal pool of light beneath the bottom vertex (Phase 4+) */}
-      <mesh
-        ref={floorGlowRef}
-        position={[0, -1.96, 0.15]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={[5.6, 2.3, 1]}
-        geometry={glowAssets.planeGeo}
-      >
-        <primitive
-          object={glowAssets.floorMat}
-          ref={floorGlowMatRef}
-          attach="material"
-        />
-      </mesh>
+          <mesh
+            ref={floorGlowRef}
+            position={[0, -1.96, 0.15]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={[5.6, 2.3, 1]}
+            geometry={glowAssets.planeGeo}
+          >
+            <primitive
+              object={glowAssets.floorMat}
+              ref={floorGlowMatRef}
+              attach="material"
+            />
+          </mesh>
+        </>
+      )}
     </group>
   );
 }

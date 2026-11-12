@@ -6,6 +6,7 @@ import {
   OUTER_VERTICES,
   clamp01,
   easeOutCubic,
+  type LogoPalette,
 } from './cubeMath';
 import type { LogoAnimationState, LogoMode } from '../../hooks/useLogoAnimation';
 
@@ -13,6 +14,8 @@ interface ConnectionNodesProps {
   animRef: React.MutableRefObject<LogoAnimationState>;
   mode: LogoMode;
   minimal: boolean;
+  palette: LogoPalette;
+  transparentBg?: boolean;
   reducedMotion: boolean;
 }
 
@@ -22,6 +25,8 @@ export default function ConnectionNodes({
   animRef,
   mode,
   minimal,
+  palette,
+  transparentBg = false,
   reducedMotion,
 }: ConnectionNodesProps) {
   const groupRefs = useRef<(THREE.Group | null)[]>([]);
@@ -86,6 +91,15 @@ export default function ConnectionNodes({
       return { id: idx, outer, core, halo };
     });
   }, [minimal]);
+
+  useEffect(() => {
+    materials.forEach((m) => {
+      m.outer.color.set(palette.nodeColor);
+      m.outer.emissive.set(palette.nodeEmissive);
+      m.core.color.set(palette.nodeCore);
+      m.halo.color.set(palette.nodeHalo);
+    });
+  }, [palette, materials]);
 
   useEffect(() => {
     return () => {
@@ -197,7 +211,7 @@ export default function ConnectionNodes({
               attach="material"
             />
           </mesh>
-          {!minimal && (
+          {!minimal && !transparentBg && (
             <mesh geometry={geometries.halo}>
               <primitive
                 object={materials[idx].halo}

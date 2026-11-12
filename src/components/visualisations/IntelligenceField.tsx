@@ -15,11 +15,20 @@ const MouseContext = createContext<React.MutableRefObject<MouseState>>({
   current: { x: 0, y: 0, worldX: 0, worldY: 0, active: false },
 });
 
+export interface ExclusionZone {
+  active: boolean;
+  ndcX: number;
+  ndcY: number;
+  ndcRx: number;
+  ndcRy: number;
+}
+
 interface IntelligenceFieldProps {
   className?: string;
   nodeCount?: number;
   reducedMotion?: boolean;
   variant?: 'hero' | 'section' | 'mini';
+  exclusionRef?: React.MutableRefObject<ExclusionZone | null>;
 }
 
 /* =========================================================================
@@ -53,13 +62,21 @@ function useThemeMode(): 'dark' | 'light' {
 /* =========================================================================
    1. The Latent Manifold (Hero) — Interactive Antigravity Vector Streamlines
    ========================================================================= */
-function LatentManifold({ reducedMotion }: { reducedMotion: boolean }) {
+function LatentManifold({
+  reducedMotion,
+  exclusionRef,
+}: {
+  reducedMotion: boolean;
+  exclusionRef?: React.MutableRefObject<ExclusionZone | null>;
+}) {
   const pointsRef = useRef<THREE.Points>(null);
   const groupRef = useRef<THREE.Group>(null);
   const mouseRef = useContext(MouseContext);
   const theme = useThemeMode();
   const isLight = theme === 'light';
   const count = 1100;
+  const tmpMvp = useMemo(() => new THREE.Matrix4(), []);
+  const tmpViewProj = useMemo(() => new THREE.Matrix4(), []);
 
   // Initialize particle coordinates and colors
   const [positions, initialCoords, colors] = useMemo(() => {
@@ -151,18 +168,28 @@ function LatentManifold({ reducedMotion }: { reducedMotion: boolean }) {
     groupRef.current.position.x += (targetPosX - groupRef.current.position.x) * 0.05;
     groupRef.current.position.y += (targetPosY - groupRef.current.position.y) * 0.05;
 
-    if (!reducedMotion) {
-      const step = Math.min(delta, 0.05) * 1.8;
-      const mX = mouse.worldX;
-      const mY = mouse.worldY;
-      const hasMouse = mouse.active;
+    const ex = exclusionRef?.current;
+    const hasExclusion = Boolean(ex && ex.active && ex.ndcRx > 0 && ex.ndcRy > 0);
+    if (hasExclusion) {
+      groupRef.current.updateMatrixWorld();
+      tmpViewProj.multiplyMatrices(state.camera.projectionMatrix, state.camera.matrixWorldInverse);
+      tmpMvp.multiplyMatrices(tmpViewProj, groupRef.current.matrixWorld);
+    }
+    const m = tmpMvp.elements;
 
-      for (let i = 0; i < count; i++) {
-        const idx = i * 3;
-        const px = pos[idx];
-        const py = pos[idx + 1];
-        const pz = pos[idx + 2];
+    const step = Math.min(delta, 0.05) * 1.8;
+    const mX = mouse.worldX;
+    const mY = mouse.worldY;
+    const hasMouse = mouse.active;
+    let moved = false;
 
+    for (let i = 0; i < count; i++) {
+      const idx = i * 3;
+      const px = pos[idx];
+      const py = pos[idx + 1];
+      const pz = pos[idx + 2];
+
+      if (!reducedMotion) {
         // 3D curl/divergence-free flow velocity
         let vx = Math.sin(py * 0.65 + t) * 0.8 + Math.cos(pz * 0.45 + t * 0.7) * 0.4;
         let vy = Math.cos(px * 0.65 + t) * 0.8 + Math.sin(pz * 0.55 + t * 0.5) * 0.4;
@@ -194,7 +221,34 @@ function LatentManifold({ reducedMotion }: { reducedMotion: boolean }) {
         if (pos[idx + 1] < -3.8) pos[idx + 1] = 3.8;
         if (pos[idx + 2] > 3) pos[idx + 2] = -3;
         if (pos[idx + 2] < -3) pos[idx + 2] = 3;
+        moved = true;
       }
+
+      // Keep particles outside the YARA cube's screen-space hexagon boundary
+      if (hasExclusion && ex) {
+        const cx = pos[idx];
+        const cy = pos[idx + 1];
+        const cz = pos[idx + 2];
+        const clipW = m[3] * cx + m[7] * cy + m[11] * cz + m[15];
+        if (clipW > 0.1) {
+          const ndcX = (m[0] * cx + m[4] * cy + m[8] * cz + m[12]) / clipW;
+          const ndcY = (m[1] * cx + m[5] * cy + m[9] * cz + m[13]) / clipW;
+          const dx = (ndcX - ex.ndcX) / ex.ndcRx;
+          const dy = (ndcY - ex.ndcY) / ex.ndcRy;
+          const hexDist = Math.max(Math.abs(dx), Math.abs(dx) * 0.5 + Math.abs(dy) * 0.8660254) / 0.8660254;
+          if (hexDist < 1.08) {
+            const rawLen = Math.hypot(dx, dy);
+            const dirX = rawLen > 1e-4 ? dx / rawLen : 1;
+            const dirY = rawLen > 1e-4 ? dy / rawLen : 0;
+            const push = Math.max(0.15, (1.12 - hexDist) * 1.6);
+            pos[idx] += dirX * push;
+            pos[idx + 1] += dirY * push;
+            moved = true;
+          }
+        }
+      }
+    }
+    if (moved) {
       posAttr.needsUpdate = true;
     }
   });
@@ -303,6 +357,7 @@ export default function IntelligenceField({
   className = '',
   reducedMotion = false,
   variant = 'hero',
+  exclusionRef,
 }: IntelligenceFieldProps) {
   const [canRenderWebGL, setCanRenderWebGL] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -389,7 +444,7 @@ export default function IntelligenceField({
           style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
         >
           {isHero ? (
-            <LatentManifold reducedMotion={reducedMotion} />
+            <LatentManifold reducedMotion={reducedMotion} exclusionRef={exclusionRef} />
           ) : (
             <LossLandscape reducedMotion={reducedMotion} />
           )}

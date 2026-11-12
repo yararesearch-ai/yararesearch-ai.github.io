@@ -1,8 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none">
   <rect width="32" height="32" rx="6" fill="#090B10"/>
-  <rect width="32" height="32" rx="6" fill="rgba(91, 156, 255, 0.08)"/>
-  <!-- Y shape -->
-  <path d="M9 8L16 16M23 8L16 16M16 16V24" stroke="#5B9CFF" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Accent dot -->
-  <circle cx="25" cy="7" r="2" fill="#56D9E8"/>
+  <path d="M16 4.8V16M6.3 21.6L16 16M25.7 21.6L16 16" stroke="#5B9CFF" stroke-opacity="0.28" stroke-width="1" stroke-linecap="round"/>
+  <path d="M16 4.8L25.7 10.4V21.6L16 27.2L6.3 21.6V10.4L16 4.8Z" stroke="#5B9CFF" stroke-width="1.5" stroke-linejoin="round"/>
+  <path d="M6.3 10.4L16 16L25.7 10.4M16 16V27.2" stroke="#5B9CFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M6.3 10.4L16 16L25.7 10.4M16 16V27.2" stroke="#56D9E8" stroke-opacity="0.6" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="16" cy="4.8" r="2.1" fill="#56D9E8"/>
+  <circle cx="25.7" cy="10.4" r="2.1" fill="#56D9E8"/>
+  <circle cx="25.7" cy="21.6" r="2.1" fill="#56D9E8"/>
+  <circle cx="16" cy="27.2" r="2.1" fill="#56D9E8"/>
+  <circle cx="6.3" cy="21.6" r="2.1" fill="#56D9E8"/>
+  <circle cx="6.3" cy="10.4" r="2.1" fill="#56D9E8"/>
 </svg>

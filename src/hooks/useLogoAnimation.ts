@@ -109,6 +109,32 @@ export function useWebGLAvailable(): boolean | null {
   return available;
 }
 
+/**
+ * Tracks site dark/light theme from `<html data-theme>` and `.light` class.
+ */
+export function useLogoThemeMode(): 'dark' | 'light' {
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    const sync = () => {
+      const isLight =
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.documentElement.classList.contains('light');
+      setTheme(isLight ? 'light' : 'dark');
+    };
+    sync();
+    const observer = new MutationObserver(sync);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme', 'class'],
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  return theme;
+}
+
 export interface UseLogoAnimationOptions {
   mode: LogoMode;
   autoPlay: boolean;

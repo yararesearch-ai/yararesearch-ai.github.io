@@ -12,17 +12,20 @@ import React, {
 import YaraWordmark from './YaraWordmark';
 import {
   useLogoAnimation,
+  useLogoThemeMode,
   usePrefersReducedMotion,
   useWebGLAvailable,
   type LogoMode,
   type LogoPhase,
 } from '../../hooks/useLogoAnimation';
+import { getLogoPalette, type LogoPaletteName } from './cubeMath';
 import '../../styles/yara-logo.css';
 
 const LazyYaraLogoScene = lazy(() => import('./YaraLogoScene'));
 
 export interface YaraLogo3DProps {
   mode?: LogoMode;
+  palette?: LogoPaletteName;
   autoPlay?: boolean;
   interactive?: boolean;
   showWordmark?: boolean;
@@ -138,6 +141,7 @@ function StaticLogoFallback({
 
 export default function YaraLogo3D({
   mode = 'intro',
+  palette = 'brand',
   autoPlay = true,
   interactive = true,
   showWordmark = true,
@@ -162,6 +166,9 @@ export default function YaraLogo3D({
 
   const reducedMotion = usePrefersReducedMotion(reducedMotionProp);
   const webglAvailable = useWebGLAvailable();
+  const detectedTheme = useLogoThemeMode();
+  const effectiveTheme = background === '#000000' ? 'dark' : detectedTheme;
+  const resolvedPalette = getLogoPalette(palette, effectiveTheme);
 
   const {
     animRef,
@@ -308,6 +315,8 @@ export default function YaraLogo3D({
       ref={stageRef}
       className={['yara-logo-stage', className].filter(Boolean).join(' ')}
       style={stageStyle}
+      data-palette={palette}
+      data-transparent={background === 'transparent' ? 'true' : undefined}
       aria-label="YARA Research interactive 3D identity"
     >
       <div className="yara-logo-canvas-wrap">
@@ -329,6 +338,7 @@ export default function YaraLogo3D({
               <LazyYaraLogoScene
                 animRef={animRef}
                 mode={mode}
+                palette={resolvedPalette}
                 autoPlay={autoPlay}
                 interactive={interactive}
                 inspectEnabled={interactive && inspectEnabled}

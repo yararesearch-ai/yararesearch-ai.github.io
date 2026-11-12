@@ -5,7 +5,7 @@
 .yara-logo-stage {
   position: relative;
   width: 100%;
-  min-height: 440px;
+  min-height: 260px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,7 +23,7 @@
   position: relative;
   width: 100%;
   flex: 1 1 auto;
-  min-height: 300px;
+  min-height: 240px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,6 +126,11 @@
   text-shadow: 0 0 28px rgba(184, 255, 240, 0.14);
 }
 
+.yara-wordmark.is-compact {
+  margin-top: -0.75rem;
+  padding-bottom: 1.25rem;
+}
+
 .yara-wordmark.is-compact .yara-wordmark-title {
   font-size: clamp(1.35rem, 3vw, 2.2rem);
   letter-spacing: 0.38em;
@@ -204,6 +209,88 @@
     transparent 76%
   );
   pointer-events: none;
+}
+
+/* Light-theme readability when embedded over light surfaces */
+[data-theme='light'] .yara-logo-stage[data-transparent='true'] .yara-wordmark-title,
+html.light .yara-logo-stage[data-transparent='true'] .yara-wordmark-title {
+  color: #0b132b;
+  text-shadow: none;
+}
+
+[data-theme='light'] .yara-logo-stage[data-transparent='true'] .yara-wordmark-sub,
+html.light .yara-logo-stage[data-transparent='true'] .yara-wordmark-sub {
+  color: #008a6b;
+  font-weight: 500;
+}
+
+[data-theme='light'] .yara-logo-stage[data-transparent='true'] .yara-wordmark-line--left,
+html.light .yara-logo-stage[data-transparent='true'] .yara-wordmark-line--left {
+  background: linear-gradient(to left, #008a6b 0%, rgba(0, 138, 107, 0.22) 65%, transparent 100%);
+}
+
+[data-theme='light'] .yara-logo-stage[data-transparent='true'] .yara-wordmark-line--right,
+html.light .yara-logo-stage[data-transparent='true'] .yara-wordmark-line--right {
+  background: linear-gradient(to right, #008a6b 0%, rgba(0, 138, 107, 0.22) 65%, transparent 100%);
+}
+
+[data-theme='light'] .yara-logo-stage[data-transparent='true'] .yara-wordmark-underglow,
+html.light .yara-logo-stage[data-transparent='true'] .yara-wordmark-underglow {
+  opacity: 0;
+}
+
+/* Website brand palette (Electric Blue + Intelligence Cyan) */
+.yara-logo-stage[data-palette='brand'] .yara-logo-loading-dot {
+  background: #5b9cff;
+  box-shadow: 0 0 18px rgba(91, 156, 255, 0.55);
+}
+
+.yara-logo-stage[data-palette='brand'] .yara-wordmark-title {
+  color: #f4f6fa;
+  text-shadow: 0 0 28px rgba(91, 156, 255, 0.18);
+}
+
+.yara-logo-stage[data-palette='brand'] .yara-wordmark-sub {
+  color: #56d9e8;
+}
+
+.yara-logo-stage[data-palette='brand'] .yara-wordmark-line--left {
+  background: linear-gradient(to left, #5b9cff 0%, rgba(91, 156, 255, 0.22) 65%, transparent 100%);
+}
+
+.yara-logo-stage[data-palette='brand'] .yara-wordmark-line--right {
+  background: linear-gradient(to right, #5b9cff 0%, rgba(91, 156, 255, 0.22) 65%, transparent 100%);
+}
+
+.yara-logo-stage[data-palette='brand'] .yara-wordmark-underglow {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(91, 156, 255, 0.18) 0%,
+    rgba(86, 217, 232, 0.06) 48%,
+    transparent 76%
+  );
+}
+
+[data-theme='light'] .yara-logo-stage[data-palette='brand'][data-transparent='true'] .yara-wordmark-title,
+html.light .yara-logo-stage[data-palette='brand'][data-transparent='true'] .yara-wordmark-title {
+  color: #0b132b;
+  text-shadow: none;
+}
+
+[data-theme='light'] .yara-logo-stage[data-palette='brand'][data-transparent='true'] .yara-wordmark-sub,
+html.light .yara-logo-stage[data-palette='brand'][data-transparent='true'] .yara-wordmark-sub {
+  color: #1d4ed8;
+  font-weight: 500;
+}
+
+[data-theme='light'] .yara-logo-stage[data-palette='brand'][data-transparent='true'] .yara-wordmark-line--left,
+html.light .yara-logo-stage[data-palette='brand'][data-transparent='true'] .yara-wordmark-line--left {
+  background: linear-gradient(to left, #1d4ed8 0%, rgba(29, 78, 216, 0.22) 65%, transparent 100%);
+}
+
+[data-theme='light'] .yara-logo-stage[data-palette='brand'][data-transparent='true'] .yara-wordmark-line--right,
+html.light .yara-logo-stage[data-palette='brand'][data-transparent='true'] .yara-wordmark-line--right {
+  background: linear-gradient(to right, #1d4ed8 0%, rgba(29, 78, 216, 0.22) 65%, transparent 100%);
 }
 
 /* ==========================================================================

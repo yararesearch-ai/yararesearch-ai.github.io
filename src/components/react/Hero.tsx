@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import IntelligenceField from '../visualisations/IntelligenceField';
+import IntelligenceField, { type ExclusionZone } from '../visualisations/IntelligenceField';
+import YaraLogo3D from '../branding/YaraLogo3D';
 
 interface HeroProps {
   reducedMotion?: boolean;
@@ -11,6 +12,15 @@ const META_TAGS = ['INDEPENDENT RESEARCH', 'AI SYSTEMS', 'OPEN COLLABORATION'];
 export default function Hero({ reducedMotion = false }: HeroProps) {
   const [mounted, setMounted] = useState(false);
   const [visibleTag, setVisibleTag] = useState(0);
+  const fieldRef = useRef<HTMLDivElement>(null);
+  const logoFrameRef = useRef<HTMLDivElement>(null);
+  const exclusionRef = useRef<ExclusionZone | null>({
+    active: false,
+    ndcX: 0,
+    ndcY: 0,
+    ndcRx: 0,
+    ndcRy: 0,
+  });
 
   useEffect(() => {
     setMounted(true);
@@ -24,16 +34,51 @@ export default function Hero({ reducedMotion = false }: HeroProps) {
     return () => clearInterval(id);
   }, [reducedMotion]);
 
+  useEffect(() => {
+    const updateExclusion = () => {
+      const fieldEl = fieldRef.current;
+      const logoEl = logoFrameRef.current;
+      if (!fieldEl || !logoEl || !exclusionRef.current) return;
+
+      const fieldRect = fieldEl.getBoundingClientRect();
+      const canvasWrap = logoEl.querySelector('.yara-logo-canvas-wrap') || logoEl;
+      const logoRect = canvasWrap.getBoundingClientRect();
+      if (fieldRect.width <= 0 || fieldRect.height <= 0 || logoRect.width <= 0) return;
+
+      const cx = logoRect.left + logoRect.width / 2 - fieldRect.left;
+      const cy = logoRect.top + logoRect.height / 2 - fieldRect.top;
+      const radiusPx = Math.min(logoRect.height * 0.39, (logoRect.width * 0.39) / 0.866);
+
+      exclusionRef.current.ndcX = (cx / fieldRect.width) * 2 - 1;
+      exclusionRef.current.ndcY = -((cy / fieldRect.height) * 2 - 1);
+      exclusionRef.current.ndcRx = (radiusPx / fieldRect.width) * 2;
+      exclusionRef.current.ndcRy = (radiusPx / fieldRect.height) * 2;
+      exclusionRef.current.active = true;
+    };
+
+    updateExclusion();
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(updateExclusion) : null;
+    if (ro && fieldRef.current) ro.observe(fieldRef.current);
+    if (ro && logoFrameRef.current) ro.observe(logoFrameRef.current);
+    window.addEventListener('resize', updateExclusion, { passive: true });
+
+    return () => {
+      ro?.disconnect();
+      window.removeEventListener('resize', updateExclusion);
+    };
+  }, []);
+
   return (
     <section className="hero" aria-label="YARA Research introduction">
       {/* Intelligence Field canvas — full viewport background */}
-      <div className="hero-field" aria-hidden="true">
+      <div ref={fieldRef} className="hero-field" aria-hidden="true">
         {mounted && (
           <IntelligenceField
             className="hero-canvas"
             nodeCount={65}
             reducedMotion={reducedMotion}
             variant="hero"
+            exclusionRef={exclusionRef}
           />
         )}
         {/* Gradient overlays to blend field into page */}
@@ -41,59 +86,79 @@ export default function Hero({ reducedMotion = false }: HeroProps) {
         <div className="hero-field-overlay hero-field-overlay--left" />
       </div>
 
-      {/* Content */}
-      <div className="hero-content">
-        {/* Research coordinate + status */}
-        <div className="hero-meta" aria-label="Organisation metadata">
-          <span className="hero-coord">YR · 2026 · EST.</span>
-          <span className="hero-sep" aria-hidden="true">·</span>
-          <span className="hero-rotating-tag" aria-live="polite" aria-atomic="true">
-            {META_TAGS[visibleTag]}
-          </span>
+      {/* Content + 3D Brand Mark */}
+      <div className="hero-grid">
+        <div className="hero-content">
+          {/* Research coordinate + status */}
+          <div className="hero-meta" aria-label="Organisation metadata">
+            <span className="hero-coord">YR · 2026 · EST.</span>
+            <span className="hero-sep" aria-hidden="true">·</span>
+            <span className="hero-rotating-tag" aria-live="polite" aria-atomic="true">
+              {META_TAGS[visibleTag]}
+            </span>
+          </div>
+
+          {/* Headline */}
+          <h1 className="hero-headline">
+            Exploring the next generation
+            <br />
+            <span className="hero-headline-accent">of intelligent systems.</span>
+          </h1>
+
+          {/* Supporting text */}
+          <p className="hero-body">
+            YARA Research is an independent AI research and engineering initiative
+            exploring the foundations, architectures and emerging possibilities of
+            intelligent systems.
+          </p>
+
+          {/* CTAs */}
+          <div className="hero-ctas">
+            <a href="/research" className="btn-primary">
+              Explore Research
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+            <a href="/open-source" className="btn-secondary">
+              Discover Open Source
+            </a>
+          </div>
+
+          {/* Programme count — honest, no fake metrics */}
+          <div className="hero-stats">
+            <div className="hero-stat">
+              <span className="hero-stat-value">6</span>
+              <span className="hero-stat-label">Research Programmes</span>
+            </div>
+            <div className="hero-stat-sep" aria-hidden="true"/>
+            <div className="hero-stat">
+              <span className="hero-stat-value">3</span>
+              <span className="hero-stat-label">Flagship Projects</span>
+            </div>
+            <div className="hero-stat-sep" aria-hidden="true"/>
+            <div className="hero-stat">
+              <span className="hero-stat-value">Open</span>
+              <span className="hero-stat-label">Collaboration</span>
+            </div>
+          </div>
         </div>
 
-        {/* Headline */}
-        <h1 className="hero-headline">
-          Exploring the next generation
-          <br />
-          <span className="hero-headline-accent">of intelligent systems.</span>
-        </h1>
-
-        {/* Supporting text */}
-        <p className="hero-body">
-          YARA Research is an independent AI research and engineering initiative
-          exploring the foundations, architectures and emerging possibilities of
-          intelligent systems.
-        </p>
-
-        {/* CTAs */}
-        <div className="hero-ctas">
-          <a href="/research" className="btn-primary">
-            Explore Research
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </a>
-          <a href="/open-source" className="btn-secondary">
-            Discover Open Source
-          </a>
-        </div>
-
-        {/* Programme count — honest, no fake metrics */}
-        <div className="hero-stats">
-          <div className="hero-stat">
-            <span className="hero-stat-value">6</span>
-            <span className="hero-stat-label">Research Programmes</span>
-          </div>
-          <div className="hero-stat-sep" aria-hidden="true"/>
-          <div className="hero-stat">
-            <span className="hero-stat-value">3</span>
-            <span className="hero-stat-label">Flagship Projects</span>
-          </div>
-          <div className="hero-stat-sep" aria-hidden="true"/>
-          <div className="hero-stat">
-            <span className="hero-stat-value">Open</span>
-            <span className="hero-stat-label">Collaboration</span>
+        {/* Interactive 3D YARA Cube */}
+        <div className="hero-logo-wrap">
+          <div ref={logoFrameRef} className="hero-logo-frame">
+            <YaraLogo3D
+              mode="intro"
+              autoPlay={true}
+              interactive={true}
+              showWordmark={true}
+              compact={true}
+              showControls={false}
+              enablePostProcessing={false}
+              background="transparent"
+              height="clamp(340px, 44vw, 540px)"
+              reducedMotion={reducedMotion}
+            />
           </div>
         </div>
       </div>
@@ -148,19 +213,41 @@ export default function Hero({ reducedMotion = false }: HeroProps) {
           background: linear-gradient(to right, var(--color-hero-overlay) 0%, transparent 100%);
         }
 
-        /* Content */
-        .hero-content {
+        /* Two-column hero layout */
+        .hero-grid {
           position: relative;
           z-index: 1;
+          width: 100%;
           max-width: var(--max-width-content);
           margin-inline: auto;
           padding-inline: var(--space-container);
-          padding-block: 5rem 6rem;
+          padding-block: 4rem 5rem;
+          display: grid;
+          grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+          align-items: center;
+          gap: clamp(2rem, 4vw, 4rem);
+        }
+
+        /* Content */
+        .hero-content {
           display: flex;
           flex-direction: column;
           align-items: flex-start;
           gap: 1.75rem;
-          max-width: 56rem;
+          max-width: 44rem;
+        }
+
+        /* 3D Logo Stage */
+        .hero-logo-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+        }
+
+        .hero-logo-frame {
+          width: 100%;
+          max-width: 480px;
         }
 
         /* Meta row */
@@ -348,10 +435,20 @@ export default function Hero({ reducedMotion = false }: HeroProps) {
           writing-mode: vertical-rl;
         }
 
+        @media (max-width: 960px) {
+          .hero-grid {
+            grid-template-columns: 1fr;
+            padding-block: 3rem 4rem;
+          }
+
+          .hero-logo-frame {
+            max-width: 340px;
+          }
+        }
+
         @media (max-width: 768px) {
           .hero-content {
             gap: 1.25rem;
-            padding-block: 3.5rem 5rem;
           }
 
           .hero-scroll {
