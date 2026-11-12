@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024" role="img" aria-labelledby="title desc">
+  <title id="title">YARA Research — 3D cube Y mark</title>
+  <desc id="desc">A luminous teal three-dimensional wireframe cube with a Y formed by its front internal edges, above the YARA Research wordmark.</desc>
+  <defs>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8ffff0"/><stop offset=".42" stop-color="#00e5a3"/><stop offset="1" stop-color="#008e78"/>
+    </linearGradient>
+    <linearGradient id="edgeDim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#00e5a3" stop-opacity=".82"/><stop offset="1" stop-color="#007f70" stop-opacity=".7"/>
+    </linearGradient>
+    <linearGradient id="frontY" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#bafff2" stop-opacity=".98"/>
+      <stop offset=".25" stop-color="#00f0bd" stop-opacity=".96"/>
+      <stop offset=".72" stop-color="#00c99e" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#006f65" stop-opacity=".88"/>
+    </linearGradient>
+    <radialGradient id="node" cx="32%" cy="25%" r="78%">
+      <stop offset="0" stop-color="#e2fff9"/>
+      <stop offset=".24" stop-color="#55ffe0"/>
+      <stop offset=".66" stop-color="#00dca8"/>
+      <stop offset="1" stop-color="#008b78"/>
+    </radialGradient>
+    <radialGradient id="halo">
+      <stop offset="0" stop-color="#00e5a3" stop-opacity=".24"/>
+      <stop offset=".42" stop-color="#00e5a3" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#00e5a3" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+    <filter id="nodeGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="9" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1536" height="1024" fill="#030606"/>
+  <ellipse cx="768" cy="586" rx="360" ry="125" fill="url(#halo)" filter="url(#softGlow)"/>
+
+  <!-- Cube frame: rear/top edges and side rails -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <path d="M768 174 L582 277 L768 382 L954 277 Z" stroke="url(#edge)" stroke-width="5"/>
+    <path d="M582 277 L585 478 L768 572 L951 478 L954 277" stroke="url(#edgeDim)" stroke-width="5"/>
+    <path d="M768 174 L768 382" stroke="#00b995" stroke-opacity=".24" stroke-width="2"/>
+    <path d="M585 478 L582 277 M951 478 L954 277" stroke="#00e5a3" stroke-opacity=".55" stroke-width="4"/>
+    <path d="M585 478 L768 572 L951 478" stroke="url(#edge)" stroke-width="5"/>
+  </g>
+
+  <!-- Internal Y: broad translucent beveled structural faces -->
+  <g filter="url(#glow)">
+    <path d="M600 286 L659 284 L768 352 L877 284 L936 286 L789 390 L789 540 L747 540 L747 390 Z"
+          fill="url(#frontY)" stroke="#75ffe4" stroke-opacity=".55" stroke-width="1.5"/>
+    <path d="M600 286 L659 284 L768 352 L768 382 Z" fill="#d1fff6" opacity=".18"/>
+    <path d="M936 286 L877 284 L768 352 L768 382 Z" fill="#72ffe2" opacity=".14"/>
+    <path d="M747 390 L768 382 L789 390 L789 540 L768 554 L747 540 Z" fill="#00b98f" opacity=".32"/>
+    <path d="M768 382 L789 390 L789 540 L768 554 Z" fill="#006e61" opacity=".35"/>
+  </g>
+
+  <!-- Six luminous corner nodes -->
+  <g filter="url(#nodeGlow)">
+    <g><circle cx="768" cy="174" r="28" fill="url(#node)"/><ellipse cx="758" cy="162" rx="9" ry="6" fill="#eafffa" opacity=".42"/></g>
+    <g><circle cx="582" cy="277" r="28" fill="url(#node)"/><ellipse cx="572" cy="265" rx="9" ry="6" fill="#eafffa" opacity=".4"/></g>
+    <g><circle cx="954" cy="277" r="28" fill="url(#node)"/><ellipse cx="944" cy="265" rx="9" ry="6" fill="#eafffa" opacity=".4"/></g>
+    <g><circle cx="585" cy="478" r="25" fill="url(#node)"/><ellipse cx="576" cy="468" rx="8" ry="5" fill="#eafffa" opacity=".35"/></g>
+    <g><circle cx="951" cy="478" r="25" fill="url(#node)"/><ellipse cx="942" cy="468" rx="8" ry="5" fill="#eafffa" opacity=".35"/></g>
+    <g><circle cx="768" cy="572" r="29" fill="url(#node)"/><ellipse cx="758" cy="559" rx="10" ry="6" fill="#eafffa" opacity=".4"/></g>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="768" y="752" text-anchor="middle" fill="#f7f9f8"
+        font-family="Montserrat, Avenir Next, Helvetica Neue, Arial, sans-serif"
+        font-size="112" font-weight="300" letter-spacing="37">YARA</text>
+  <g stroke="#00cfa0" stroke-width="2" opacity=".9">
+    <path d="M377 800 H498"/><path d="M1038 800 H1159"/>
+  </g>
+  <text x="768" y="814" text-anchor="middle" fill="#00dca7"
+        font-family="Montserrat, Avenir Next, Helvetica Neue, Arial, sans-serif"
+        font-size="36" font-weight="400" letter-spacing="23">RESEARCH</text>
+</svg>

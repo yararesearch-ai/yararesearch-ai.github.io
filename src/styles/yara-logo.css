@@ -1,0 +1,295 @@
+/* ==========================================================================
+   YARA Research — Interactive 3D Logo Stylesheet
+   ========================================================================== */
+
+.yara-logo-stage {
+  position: relative;
+  width: 100%;
+  min-height: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: var(--yara-logo-bg, #000000);
+  color: #f5f8f7;
+  user-select: none;
+  /* Efficient background processing: pause offscreen WebGL rendering */
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 560px;
+}
+
+.yara-logo-canvas-wrap {
+  position: relative;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.yara-logo-canvas-wrap canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+/* Subtle loading placeholder while lazy R3F chunk resolves */
+.yara-logo-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle at 50% 48%,
+    rgba(0, 229, 163, 0.08) 0%,
+    rgba(0, 0, 0, 0) 52%
+  );
+}
+
+.yara-logo-loading-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #00e5a3;
+  box-shadow: 0 0 18px rgba(0, 229, 163, 0.6);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .yara-logo-loading-dot {
+    animation: yaraDotPulse 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes yaraDotPulse {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+/* ==========================================================================
+   Wordmark (Phase 5 Reveal)
+   ========================================================================== */
+
+.yara-wordmark {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 1.25rem 2.25rem;
+  margin-top: -1.75rem;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.7s ease-out;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .yara-wordmark:not(.is-reduced-motion) {
+    transform: translateY(12px);
+    transition:
+      opacity 0.9s cubic-bezier(0.19, 1, 0.22, 1),
+      transform 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+.yara-wordmark.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.yara-wordmark.is-reduced-motion {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+.yara-wordmark-title {
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.85rem, 4.4vw, 3.35rem);
+  line-height: 1.05;
+  letter-spacing: 0.44em;
+  text-indent: 0.44em;
+  color: #f4f7f6;
+  text-transform: uppercase;
+  text-shadow: 0 0 28px rgba(184, 255, 240, 0.14);
+}
+
+.yara-wordmark.is-compact .yara-wordmark-title {
+  font-size: clamp(1.35rem, 3vw, 2.2rem);
+  letter-spacing: 0.38em;
+  text-indent: 0.38em;
+}
+
+.yara-wordmark-sub-row {
+  margin-top: clamp(0.65rem, 1.3vw, 1rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.yara-wordmark-sub {
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(0.68rem, 1.25vw, 0.96rem);
+  line-height: 1;
+  letter-spacing: 0.48em;
+  text-indent: 0.48em;
+  color: #00e5a3;
+  text-transform: uppercase;
+}
+
+.yara-wordmark.is-compact .yara-wordmark-sub {
+  font-size: clamp(0.62rem, 1vw, 0.8rem);
+  letter-spacing: 0.38em;
+  text-indent: 0.38em;
+}
+
+.yara-wordmark-line {
+  display: block;
+  width: clamp(28px, 6.5vw, 96px);
+  height: 1px;
+  opacity: 0;
+  transition: opacity 0.8s ease-out 0.18s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .yara-wordmark:not(.is-reduced-motion) .yara-wordmark-line {
+    transform: scaleX(0.25);
+    transition:
+      opacity 0.9s ease-out 0.18s,
+      transform 0.95s cubic-bezier(0.19, 1, 0.22, 1) 0.18s;
+  }
+}
+
+.yara-wordmark.is-visible .yara-wordmark-line,
+.yara-wordmark.is-reduced-motion .yara-wordmark-line {
+  opacity: 0.9;
+  transform: scaleX(1);
+}
+
+.yara-wordmark-line--left {
+  transform-origin: right center;
+  background: linear-gradient(to left, #00cfa0 0%, rgba(0, 207, 160, 0.18) 65%, transparent 100%);
+}
+
+.yara-wordmark-line--right {
+  transform-origin: left center;
+  background: linear-gradient(to right, #00cfa0 0%, rgba(0, 207, 160, 0.18) 65%, transparent 100%);
+}
+
+.yara-wordmark-underglow {
+  position: absolute;
+  bottom: 0.15rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(180px, 34vw, 380px);
+  height: 44px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 229, 163, 0.16) 0%,
+    rgba(0, 185, 143, 0.05) 48%,
+    transparent 76%
+  );
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Subtle Interactive & Accessibility Controls
+   ========================================================================== */
+
+.yara-logo-controls {
+  position: absolute;
+  bottom: 0.85rem;
+  right: 0.85rem;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.yara-logo-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 229, 163, 0.22);
+  background: rgba(6, 12, 11, 0.72);
+  backdrop-filter: blur(8px);
+  color: #c8efe5;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.yara-logo-btn:hover {
+  border-color: rgba(0, 229, 163, 0.58);
+  background: rgba(0, 42, 33, 0.82);
+  color: #b8fff0;
+}
+
+.yara-logo-btn[data-active='true'] {
+  border-color: #00e5a3;
+  background: rgba(0, 229, 163, 0.14);
+  color: #00e5a3;
+}
+
+.yara-logo-btn:focus-visible {
+  outline: 2px solid #00e5a3;
+  outline-offset: 2px;
+}
+
+/* WebGL Fallback */
+.yara-logo-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+
+.yara-logo-fallback-svg {
+  width: min(320px, 72vw);
+  height: auto;
+  filter: drop-shadow(0 0 28px rgba(0, 229, 163, 0.22));
+}
+
+@media (max-width: 640px) {
+  .yara-logo-stage {
+    min-height: 360px;
+  }
+
+  .yara-wordmark {
+    margin-top: -1rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .yara-logo-controls {
+    bottom: 0.6rem;
+    right: 0.6rem;
+  }
+}
