@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="640" height="640" fill="none" role="img" aria-labelledby="titleLight">
+  <title id="titleLight">YARA Research Logo (Light Theme)</title>
+  <defs>
+    <linearGradient id="edgeLightL" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="50%" stop-color="#1D4ED8" />
+      <stop offset="100%" stop-color="#1E3A8A" />
+    </linearGradient>
+    <linearGradient id="yBrightLightL" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#60A5FA" />
+      <stop offset="50%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="yDeepLightL" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1D4ED8" />
+      <stop offset="65%" stop-color="#1E40AF" />
+      <stop offset="100%" stop-color="#172554" />
+    </linearGradient>
+    <radialGradient id="nodeLightL" cx="34%" cy="28%" r="72%">
+      <stop offset="0%" stop-color="#BAE6FD" />
+      <stop offset="28%" stop-color="#38BDF8" />
+      <stop offset="70%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#0C4A6E" />
+    </radialGradient>
+    <linearGradient id="ruleLeftLight" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0%" stop-color="#1D4ED8" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#1D4ED8" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="ruleRightLight" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1D4ED8" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#1D4ED8" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(64, 24)">
+    <g stroke="#334155" stroke-opacity="0.32" stroke-width="4" stroke-linecap="round">
+      <line x1="256" y1="80" x2="256" y2="256" />
+      <line x1="103.6" y1="344" x2="256" y2="256" />
+      <line x1="408.4" y1="344" x2="256" y2="256" />
+    </g>
+    <polygon
+      points="256,80 408.4,168 408.4,344 256,432 103.6,344 103.6,168"
+      stroke="url(#edgeLightL)"
+      stroke-width="8.5"
+      stroke-linejoin="round"
+    />
+    <polygon
+      points="256,80 408.4,168 408.4,344 256,432 103.6,344 103.6,168"
+      stroke="#60A5FA"
+      stroke-opacity="0.55"
+      stroke-width="2"
+      stroke-linejoin="round"
+    />
+    <g stroke="#60A5FA" stroke-opacity="0.45" stroke-width="1" stroke-linejoin="round">
+      <polygon points="256,256 256,231.75 154.8,173.3 131.3,184" fill="url(#yBrightLightL)" />
+      <polygon points="256,256 131.3,184 133.8,209.7 235,268.1" fill="url(#yDeepLightL)" />
+      <polygon points="256,256 380.7,184 357.2,173.3 256,231.75" fill="url(#yBrightLightL)" />
+      <polygon points="256,256 277,268.1 378.2,209.7 380.7,184" fill="url(#yDeepLightL)" />
+      <polygon points="256,256 235,268.1 235,385 256,400" fill="url(#yBrightLightL)" />
+      <polygon points="256,256 256,400 277,385 277,268.1" fill="url(#yDeepLightL)" />
+    </g>
+    <path
+      d="M131.3 184 L256 256 L380.7 184 M256 256 L256 400"
+      stroke="#93C5FD"
+      stroke-opacity="0.88"
+      stroke-width="2.6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <circle cx="256" cy="80" r="27" fill="url(#nodeLightL)" />
+    <circle cx="408.4" cy="168" r="27" fill="url(#nodeLightL)" />
+    <circle cx="408.4" cy="344" r="27" fill="url(#nodeLightL)" />
+    <circle cx="256" cy="432" r="27" fill="url(#nodeLightL)" />
+    <circle cx="103.6" cy="344" r="27" fill="url(#nodeLightL)" />
+    <circle cx="103.6" cy="168" r="27" fill="url(#nodeLightL)" />
+  </g>
+
+  <text
+    x="333"
+    y="540"
+    text-anchor="middle"
+    fill="#0B132B"
+    font-family="'Space Grotesk', Inter, system-ui, -apple-system, sans-serif"
+    font-size="58"
+    font-weight="400"
+    letter-spacing="26"
+  >YARA</text>
+
+  <line x1="92" y1="579" x2="188" y2="579" stroke="url(#ruleLeftLight)" stroke-width="1.5" />
+  <text
+    x="325"
+    y="585"
+    text-anchor="middle"
+    fill="#1D4ED8"
+    font-family="'Space Grotesk', Inter, system-ui, -apple-system, sans-serif"
+    font-size="18"
+    font-weight="500"
+    letter-spacing="10"
+  >RESEARCH</text>
+  <line x1="452" y1="579" x2="548" y2="579" stroke="url(#ruleRightLight)" stroke-width="1.5" />
+</svg>

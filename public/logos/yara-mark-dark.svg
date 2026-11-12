@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" fill="none" role="img" aria-label="YARA Research Cube Mark (Dark Theme)">
+  <defs>
+    <linearGradient id="edgeDark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#BAE6FD" />
+      <stop offset="50%" stop-color="#5B9CFF" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="yLightFacet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#BAE6FD" />
+      <stop offset="45%" stop-color="#5B9CFF" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+    <linearGradient id="yDeepFacet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5B9CFF" />
+      <stop offset="60%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1E40AF" />
+    </linearGradient>
+    <radialGradient id="nodeDark" cx="34%" cy="28%" r="72%">
+      <stop offset="0%" stop-color="#E0F9FF" />
+      <stop offset="30%" stop-color="#56D9E8" />
+      <stop offset="72%" stop-color="#0284C7" />
+      <stop offset="100%" stop-color="#075985" />
+    </radialGradient>
+  </defs>
+
+  <!-- Subtle rear depth edges -->
+  <g stroke="#6366F1" stroke-opacity="0.34" stroke-width="4" stroke-linecap="round">
+    <line x1="256" y1="80" x2="256" y2="256" />
+    <line x1="103.6" y1="344" x2="256" y2="256" />
+    <line x1="408.4" y1="344" x2="256" y2="256" />
+  </g>
+
+  <!-- Outer isometric cube rails -->
+  <polygon
+    points="256,80 408.4,168 408.4,344 256,432 103.6,344 103.6,168"
+    stroke="url(#edgeDark)"
+    stroke-width="8.5"
+    stroke-linejoin="round"
+  />
+  <polygon
+    points="256,80 408.4,168 408.4,344 256,432 103.6,344 103.6,168"
+    stroke="#BAE6FD"
+    stroke-opacity="0.45"
+    stroke-width="2"
+    stroke-linejoin="round"
+  />
+
+  <!-- Integrated 3D beveled Y (left/top bright facets, right/bottom deep facets) -->
+  <g stroke="#BAE6FD" stroke-opacity="0.4" stroke-width="1" stroke-linejoin="round">
+    <polygon points="256,256 256,231.75 154.8,173.3 131.3,184" fill="url(#yLightFacet)" />
+    <polygon points="256,256 131.3,184 133.8,209.7 235,268.1" fill="url(#yDeepFacet)" />
+    <polygon points="256,256 380.7,184 357.2,173.3 256,231.75" fill="url(#yLightFacet)" />
+    <polygon points="256,256 277,268.1 378.2,209.7 380.7,184" fill="url(#yDeepFacet)" />
+    <polygon points="256,256 235,268.1 235,385 256,400" fill="url(#yLightFacet)" />
+    <polygon points="256,256 256,400 277,385 277,268.1" fill="url(#yDeepFacet)" />
+  </g>
+
+  <!-- Central Y ridge crest -->
+  <path
+    d="M131.3 184 L256 256 L380.7 184 M256 256 L256 400"
+    stroke="#E0F9FF"
+    stroke-opacity="0.8"
+    stroke-width="2.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Six spherical connection nodes -->
+  <g>
+    <circle cx="256" cy="80" r="27" fill="url(#nodeDark)" />
+    <circle cx="408.4" cy="168" r="27" fill="url(#nodeDark)" />
+    <circle cx="408.4" cy="344" r="27" fill="url(#nodeDark)" />
+    <circle cx="256" cy="432" r="27" fill="url(#nodeDark)" />
+    <circle cx="103.6" cy="344" r="27" fill="url(#nodeDark)" />
+    <circle cx="103.6" cy="168" r="27" fill="url(#nodeDark)" />
+  </g>
+</svg>
